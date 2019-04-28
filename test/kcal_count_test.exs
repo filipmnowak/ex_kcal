@@ -34,7 +34,7 @@ defmodule KcalCountTest do
 
     test_products = %{Lentil: test_lentil}
     products = KcalCount.init()
-    products = KcalCount.add_one(products, test_lentil)
+    products = KcalCount.add_one(test_lentil, products)
     assert test_products == products
   end
 
@@ -83,7 +83,7 @@ defmodule KcalCountTest do
 
     test_products = %{Lentil: test_lentil, Potato: test_potato}
     products = KcalCount.init()
-    products = KcalCount.add_all(products, test_products)
+    products = KcalCount.add_all(test_products, products)
     assert test_products == products
   end
 
@@ -109,8 +109,8 @@ defmodule KcalCountTest do
     }
 
     products = KcalCount.init()
-    products = KcalCount.add_one(products, test_lentil)
-    lentil = KcalCount.get_one(products, :Lentil)
+    products = KcalCount.add_one(test_lentil, products)
+    lentil = KcalCount.get_one(:Lentil, products)
     assert test_lentil == lentil
   end
 
@@ -157,9 +157,9 @@ defmodule KcalCountTest do
     }
 
     products = KcalCount.init()
-    products = KcalCount.add_one(products, test_lentil)
-    products = KcalCount.add_one(products, test_potato)
-    potato = KcalCount.get_one(products, :Potato)
+    products = KcalCount.add_one(test_lentil, products)
+    products = KcalCount.add_one(test_potato, products)
+    potato = KcalCount.get_one(:Potato, products)
     assert test_potato == potato
   end
 
@@ -206,9 +206,9 @@ defmodule KcalCountTest do
     }
 
     products = KcalCount.init()
-    products = KcalCount.add_one(products, test_lentil)
-    products = KcalCount.add_one(products, test_potato)
-    pear = KcalCount.get_one(products, :Pear)
+    products = KcalCount.add_one(test_lentil, products)
+    products = KcalCount.add_one(test_potato, products)
+    pear = KcalCount.get_one(:Pear, products)
     assert nil == pear
   end
 
@@ -257,8 +257,8 @@ defmodule KcalCountTest do
 
     test_products = %{Lentil: test_lentil, Potato: test_potato}
     products = KcalCount.init()
-    products = KcalCount.add_one(products, test_potato)
-    products = KcalCount.add_one(products, test_lentil)
+    products = KcalCount.add_one(test_potato, products)
+    products = KcalCount.add_one(test_lentil, products)
     products = KcalCount.get_all(products)
     assert test_products == products
   end
