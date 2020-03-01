@@ -16,7 +16,7 @@ defmodule KcalCount.Minerals do
     selenium: 0,
     sodium: 0,
     sulfur: 0,
-    zinc: 0,
+    zinc: 0
   )
 
 end
