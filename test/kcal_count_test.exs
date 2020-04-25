@@ -6,6 +6,7 @@ defmodule KcalCountTest do
   alias KcalCount.Product, as: Product
   alias KcalCount.Carbs, as: Carbs
   alias KcalCount.Fats, as: Fats
+  alias KcalCount.Calc, as: Calc
 
   test "Check KcalCount.init()" do
     assert %{} == KcalCount.init()
@@ -23,9 +24,9 @@ defmodule KcalCountTest do
       },
       fats: %Fats{
         total: 1,
-        saturated: nil,
-        monounsaturated: nil,
-        polyunsaturated: nil
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -51,9 +52,9 @@ defmodule KcalCountTest do
       },
       fats: %Fats{
         total: 1,
-        saturated: nil,
-        monounsaturated: nil,
-        polyunsaturated: nil
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -66,7 +67,7 @@ defmodule KcalCountTest do
       proteins: 2,
       carbs: %Carbs{
         total: 17,
-        other: nil,
+        other: 0,
         sugars: 0.78,
         dietary_fiber: 2.2
       },
@@ -99,9 +100,9 @@ defmodule KcalCountTest do
       },
       fats: %Fats{
         total: 1,
-        saturated: nil,
-        monounsaturated: nil,
-        polyunsaturated: nil
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -126,9 +127,9 @@ defmodule KcalCountTest do
       },
       fats: %Fats{
         total: 1,
-        saturated: nil,
-        monounsaturated: nil,
-        polyunsaturated: nil
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -141,7 +142,7 @@ defmodule KcalCountTest do
       proteins: 2,
       carbs: %Carbs{
         total: 17,
-        other: nil,
+        other: 0,
         sugars: 0.78,
         dietary_fiber: 2.2
       },
@@ -175,9 +176,9 @@ defmodule KcalCountTest do
       },
       fats: %Fats{
         total: 1,
-        saturated: nil,
-        monounsaturated: nil,
-        polyunsaturated: nil
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -190,7 +191,7 @@ defmodule KcalCountTest do
       proteins: 2,
       carbs: %Carbs{
         total: 17,
-        other: nil,
+        other: 0,
         sugars: 0.78,
         dietary_fiber: 2.2
       },
@@ -213,6 +214,7 @@ defmodule KcalCountTest do
   end
 
   test "Check KcalCount.get_all() if products returned" do
+
     test_lentil = %Product{
       kcal: 353,
       weigth: 100,
@@ -225,9 +227,9 @@ defmodule KcalCountTest do
       },
       fats: %Fats{
         total: 1,
-        saturated: nil,
-        monounsaturated: nil,
-        polyunsaturated: nil
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -240,7 +242,7 @@ defmodule KcalCountTest do
       proteins: 2,
       carbs: %Carbs{
         total: 17,
-        other: nil,
+        other: 0,
         sugars: 0.78,
         dietary_fiber: 2.2
       },
@@ -269,4 +271,108 @@ defmodule KcalCountTest do
     assert %{} == products
   end
 
+  test "Check KcalCount.Calc.adjust_by_weigth() for correct adjustments" do
+    multiplier = 0.44999999999999996
+    test_lentil = %Product{
+      kcal: 353 * multiplier,
+      weigth: 45,
+      proteins: 25 * multiplier,
+      carbs: %Carbs{
+        total: 75.7 * multiplier,
+        other: 63 * multiplier,
+        sugars: 2 * multiplier,
+        dietary_fiber: 10.7 * multiplier
+      },
+      fats: %Fats{
+        total: 1 * multiplier,
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
+      },
+      name: "Lentil",
+      brand: "Some Brand",
+      producer: "Some producer"
+    }
+
+    multiplier = 2
+    test_potato = %Product{
+      kcal: 76.9 * multiplier,
+      weigth: 200,
+      proteins: 2 * multiplier,
+      carbs: %Carbs{
+        total: 17 * multiplier,
+        other: 0,
+        sugars: 0.78 * multiplier,
+        dietary_fiber: 2.2 * multiplier
+      },
+      fats: %Fats{
+        total: 0.09 * multiplier,
+        saturated: 0.03 * multiplier,
+        monounsaturated: 0 * multiplier,
+        polyunsaturated: 0.04 * multiplier
+      },
+      name: "Potato",
+      brand: "X Potato",
+      producer: "X Farmer"
+    }
+
+    lentil = %Product{
+      kcal: 353,
+      weigth: 100,
+      proteins: 25,
+      carbs: %Carbs{
+        total: 75.7,
+        other: 63,
+        sugars: 2,
+        dietary_fiber: 10.7
+      },
+      fats: %Fats{
+        total: 1,
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
+      },
+      name: "Lentil",
+      brand: "Some Brand",
+      producer: "Some producer"
+    }
+
+    potato = %Product{
+      kcal: 76.9,
+      weigth: 100,
+      proteins: 2,
+      carbs: %Carbs{
+        total: 17,
+        other: 0,
+        sugars: 0.78,
+        dietary_fiber: 2.2
+      },
+      fats: %Fats{
+        total: 0.09,
+        saturated: 0.03,
+        monounsaturated: 0,
+        polyunsaturated: 0.04
+      },
+      name: "Potato",
+      brand: "X Potato",
+      producer: "X Farmer"
+    }
+
+    test_products = %{Lentil: test_lentil, Potato: test_potato}
+    products = KcalCount.init()
+    products = Calc.adjust_by_weigth(lentil, 45) |> KcalCount.add_one(products)
+    products = Calc.adjust_by_weigth(potato, 200) |> KcalCount.add_one(products)
+    products = KcalCount.get_all(products)
+    assert test_products == products
+  end
+
+  test "Check KcalCount.Calc.multiplier()" do
+    assert 1.0 == Calc.multiplier(1, 1)
+    assert 2.0 == Calc.multiplier(100, 200)
+    assert 3.3333333333333335 == Calc.multiplier(45, 150)
+    assert {:err, :bad_args} == Calc.multiplier(-45, -5)
+    assert {:err, :bad_args} == Calc.multiplier(-45, "a")
+    assert {:err, :bad_args} == Calc.multiplier(:a, -150)
+    assert {:err, :bad_args} == Calc.multiplier(-45, 0)
+  end
 end

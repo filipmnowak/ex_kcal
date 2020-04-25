@@ -1,4 +1,7 @@
 defmodule KcalCount.Calc do
+
+  defguard is_non_negative_number(value) when is_number(value) and value > 0
+
   def adjust_by_weigth(value, new_weigth, current_weigth \\ nil) do
     Enum.reduce(
       Enum.map(
@@ -18,18 +21,24 @@ defmodule KcalCount.Calc do
     )
   end
 
-  defp multiplier(divident, divisor) do
+  def multiplier(divident, divisor) when is_non_negative_number(divident) and is_non_negative_number(divisor) do
     1/(divident/divisor)
   end
 
-  defp update_value([k, value], acc) do
+  def multiplier(_divident, _divisor) do
+    {:err, :bad_args}
+  end
+
+  def update_value(value, weigth, new_weigth) when is_struct(value) do
+    adjust_by_weigth(value, new_weigth, weigth)
+  end
+
+  def update_value(value, weigth, new_weigth) when is_number(value) do
+    value * multiplier(weigth, new_weigth)
+  end
+
+  def update_value([k, value], acc) do
     %{acc | k => value}
   end
 
-  defp update_value(value, weigth, new_weigth) when is_number(value) do
-    value * multiplier(weigth, new_weigth)
-  end
-  defp update_value(value, weigth, new_weigth) when is_struct(value) do
-    adjust_by_weigth(value, new_weigth, weigth)
-  end
 end
