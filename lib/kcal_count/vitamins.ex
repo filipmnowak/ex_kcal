@@ -13,7 +13,7 @@ defmodule KcalCount.Vitamins do
     vitamin_d: 0,
     vitamin_e: 0,
     vitamin_b9: 0,
-    vitamin_k: 0,
+    vitamin_k: 0
   )
 
 end
