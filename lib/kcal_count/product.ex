@@ -8,6 +8,7 @@ defmodule KcalCount.Product do
   defstruct(
     kcal: 0,
     weigth: 0,
+    volume: 0,
     proteins: 0,
     carbs: %Carbs{},
     fats: %Fats{},
