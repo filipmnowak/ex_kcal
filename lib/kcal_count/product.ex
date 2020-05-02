@@ -15,7 +15,7 @@ defmodule KcalCount.Product do
     minerals: %Minerals{},
     name: "",
     description: "",
-    note: ""
+    note: "",
     brand: "",
     producer: ""
   )
