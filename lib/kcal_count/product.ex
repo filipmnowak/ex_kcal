@@ -14,6 +14,7 @@ defmodule KcalCount.Product do
     fats: %Fats{},
     vitamins: %Vitamins{},
     minerals: %Minerals{},
+    salt: 0,
     name: "",
     description: "",
     note: "",
