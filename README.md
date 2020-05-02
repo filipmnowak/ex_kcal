@@ -22,4 +22,4 @@ be found at [https://hexdocs.pm/kcal_count](https://hexdocs.pm/kcal_count).
 
 # Products Nutritional Value
 
-*TODO*
+* [data/Swiss-food-composition-database-V6.1.csv](data/Swiss-food-composition-database-V6.1.csv) "Generic Foods" sheet saved to CSV, downloaded from [https://www.naehrwertdaten.ch/en/downloads/](https://www.naehrwertdaten.ch/en/downloads/)
