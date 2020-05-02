@@ -4,6 +4,7 @@ defmodule KcalCount.Product do
   alias KcalCount.Fats, as: Fats
   alias KcalCount.Vitamins, as: Vitamins
   alias KcalCount.Minerals, as: Minerals
+  alias KcalCount.Alcohols, as: Alcohols
 
   defstruct(
     kcal: 0,
@@ -14,6 +15,7 @@ defmodule KcalCount.Product do
     fats: %Fats{},
     vitamins: %Vitamins{},
     minerals: %Minerals{},
+    alcohol: %Alcohols{},
     salt: 0,
     name: "",
     description: "",
