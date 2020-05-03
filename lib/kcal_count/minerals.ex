@@ -7,6 +7,7 @@ defmodule KcalCount.Minerals do
     copper: 0,
     fluoride: 0,
     iodine: 0,
+    iodide: 0,
     iron: 0,
     magnesium: 0,
     manganese: 0,
