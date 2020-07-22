@@ -27,10 +27,10 @@ defmodule KcalCount.Data do
       },
       alcohols: %Alcohols{},
       salt: 0.18,
-      name: "Bio Campinus Schweizer Müesli",
+      name: "Schweizer Müesli",
       description: "",
       note: "",
-      brand: "Bio Campinus",
+      brand: "Bio Campiuns",
       producer: "E. Zwicky AG",
       produced: [:switzerland],
       origin: [:switzerland]
@@ -61,35 +61,37 @@ defmodule KcalCount.Data do
       brand: "Seeberger",
       producer: "Seeberger GmbH",
       produced: [:germany],
-      origin: [:iran],
+      origin: [:iran]
     },
     %Product{
-      kcal: 615,
+      kcal: 562,
       weigth: 100,
       volume: 0,
-      proteins: 21,
+      proteins: 22,
       carbs: %Carbs{
-        total: 12,
-        sugars: 2.3},
+        total: 5.9,
+        sugars: 2.6,
+        dietary_fiber: 18},
       fats: %Fats{
-        total: 52,
-        saturated: 6.1
+        total: 46,
+        saturated: 4.6
       },
       vitamins: %Vitamins{
       },
       minerals: %Minerals{
-        iron: 5.2,
-        magnesium: 176
+        iron: 6.9,
+        magnesium: 356,
+        zink: 6.3
       },
       alcohols: %Alcohols{},
-      salt: 0.02,
-      name: "Grüne Pistazienkerne",
-      description: "pistachio nuts green, shelled",
-      note: "",
-      brand: "Seeberger",
-      producer: "Seeberger GmbH",
-      produced: [:germany],
-      origin: [:iran],
+      salt: 0.03,
+      name: "Kernenmix",
+      description: "Melange De Graines",
+      note: "nutrition data found at https://www.coop.ch/de/maert/suesses-snacks/snacks/naturaplan-bio-campiuns-kernen-mix/p/6096991#tab=product-nutritions. from same page PDF with slightly different info is linked: https://www.coop.ch/content/dam/Naturaplan_2018/Gut/bio-campiuns/naehrwerte-kernenmix-naturaplan-bio-campiuns.pdf.",
+      brand: "Bio Campiuns",
+      producer: "Biofarm Genossenschaft",
+      produced: [:switzerland],
+      origin: [:switzerland]
     },
   ]
 
