@@ -81,7 +81,7 @@ defmodule KcalCount.Data do
       minerals: %Minerals{
         iron: 6.9,
         magnesium: 356,
-        zink: 6.3
+        zinc: 6.3
       },
       alcohols: %Alcohols{},
       salt: 0.03,
