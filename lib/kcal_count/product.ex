@@ -15,13 +15,15 @@ defmodule KcalCount.Product do
     fats: %Fats{},
     vitamins: %Vitamins{},
     minerals: %Minerals{},
-    alcohol: %Alcohols{},
+    alcohols: %Alcohols{},
     salt: 0,
     name: "",
     description: "",
     note: "",
     brand: "",
-    producer: ""
+    producer: "",
+    produced: [],
+    origin: []
   )
 
 end
