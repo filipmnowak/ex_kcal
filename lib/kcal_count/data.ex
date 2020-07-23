@@ -93,6 +93,80 @@ defmodule KcalCount.Data do
       produced: [:switzerland],
       origin: [:switzerland]
     },
+    %Product{
+      kcal: 683,
+      weigth: 100,
+      volume: 0,
+      proteins: 1.5,
+      carbs: %Carbs{
+        total: 2.5,
+        sugars: 1},
+      fats: %Fats{
+        total: 74,
+        saturated: 8
+      },
+      vitamins: %Vitamins{},
+      minerals: %Minerals{},
+      alcohols: %Alcohols{},
+      salt: 1.4,
+      name: "Mayonnaise Suisse",
+      description: "Schweizer Mayonnaise",
+      note: "",
+      brand: "Hugo",
+      producer: "Reitzel SA",
+      produced: [:switzerland],
+      origin: [:switzerland]
+    },
+    %Product{
+      kcal: 236,
+      weigth: 100,
+      volume: 0,
+      proteins: 17.5,
+      carbs: %Carbs{},
+      fats: %Fats{
+        total: 18.4,
+        saturated: 4.6,
+        monounsaturated: 9.3,
+        polyunsaturated: 4.5
+      },
+      vitamins: %Vitamins{},
+      minerals: %Minerals{},
+      alcohols: %Alcohols{},
+      salt: 1.2,
+      name: "Mackerel Fillets",
+      description: "Grilled, Natural",
+      note: "",
+      brand: "Rio Mare",
+      producer: "Bolton Alimentari S.p.A",
+      produced: [:italy],
+      origin: []
+    },
+    %Product{
+      kcal: 189,
+      weigth: 100,
+      volume: 0,
+      proteins: 1.2,
+      carbs: %Carbs{
+        total: 2.2,
+        sugars: 0.4,
+        dietary_fiber: 2
+      },
+      fats: %Fats{
+        total: 19,
+        saturated: 2.7,
+      },
+      vitamins: %Vitamins{},
+      minerals: %Minerals{},
+      alcohols: %Alcohols{},
+      salt: 2.3,
+      name: "Grüne Oliven Entsteint",
+      description: "Pitted Green Olives In Brine",
+      note: "",
+      brand: "creSpo",
+      producer: "Somia S.A.",
+      produced: [:morocco],
+      origin: []
+    },
   ]
 
   def products() do
