@@ -1,6 +1,6 @@
 defmodule KcalCount.Calc do
 
-  defguard is_non_negative_number(value) when is_number(value) and value > 0
+  defguard is_non_negative_number(value) when is_number(value) and value >= 0
 
   def adjust_by_weigth(value, new_weigth, current_weigth \\ nil) do
     Enum.reduce(

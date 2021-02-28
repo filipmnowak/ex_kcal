@@ -3,16 +3,17 @@ defmodule KcalCountTest do
   use ExUnit.Case
   doctest KcalCount
 
-  alias KcalCount.Product, as: Product
-  alias KcalCount.Carbs, as: Carbs
-  alias KcalCount.Fats, as: Fats
-  alias KcalCount.Calc, as: Calc
+  alias KcalCount.Products
+  alias KcalCount.Product
+  alias KcalCount.Carbs
+  alias KcalCount.Fats
+  alias KcalCount.Calc
 
-  test "Check KcalCount.init()" do
-    assert %{} == KcalCount.init()
+  test "Check Products.new()" do
+    assert %Products{map: %{}} == Products.new()
   end
 
-  test "Check KcalCount.add_one() if product added" do
+  test "Check Products.add() if product added" do
     test_lentil = %Product{
       weigth: 100,
       proteins: 25,
@@ -33,15 +34,14 @@ defmodule KcalCountTest do
       producer: "Some producer"
     }
 
-    test_products = %{Lentil: test_lentil}
-    products = KcalCount.init()
-    products = KcalCount.add_one(test_lentil, products)
+    test_products = %Products{map: %{test_lentil => nil}}
+    products = Products.new()
+    {:ok, products} = Products.add(products, test_lentil)
     assert test_products == products
   end
 
-  test "Check KcalCount.add_all() if products added / replaced" do
+  test "Check Products.add() if product not added because it's already there" do
     test_lentil = %Product{
-      kcal: 353,
       weigth: 100,
       proteins: 25,
       carbs: %Carbs{
@@ -61,6 +61,12 @@ defmodule KcalCountTest do
       producer: "Some producer"
     }
 
+    products = Products.new()
+    {:ok, products} = Products.add(products, test_lentil)
+    assert {:noop, :already_member} == Products.add(products, test_lentil)
+  end
+
+  test "Check Product.get() if product returned" do
     test_potato = %Product{
       kcal: 76.9,
       weigth: 100,
@@ -82,60 +88,12 @@ defmodule KcalCountTest do
       producer: "X Farmer"
     }
 
-    test_products = %{Lentil: test_lentil, Potato: test_potato}
-    products = KcalCount.init()
-    products = KcalCount.add_all(test_products, products)
-    assert test_products == products
+    products = Products.new()
+    {:ok, products} = Products.add(products, test_potato)
+    assert {:ok, test_potato} == Products.get(products, "Potato")
   end
 
-  test "Check KcalCount.get_one() if product returned" do
-    test_lentil = %Product{
-      weigth: 100,
-      proteins: 25,
-      carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
-      },
-      fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
-      },
-      name: "Lentil",
-      brand: "Some Brand",
-      producer: "Some producer"
-    }
-
-    products = KcalCount.init()
-    products = KcalCount.add_one(test_lentil, products)
-    lentil = KcalCount.get_one(:Lentil, products)
-    assert test_lentil == lentil
-  end
-
-  test "Check KcalCount.get_one() if other product returned" do
-    test_lentil = %Product{
-      weigth: 100,
-      proteins: 25,
-      carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
-      },
-      fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
-      },
-      name: "Lentil",
-      brand: "Some Brand",
-      producer: "Some producer"
-    }
-
+  test "Check Product.get() if missing product not returned" do
     test_potato = %Product{
       kcal: 76.9,
       weigth: 100,
@@ -157,14 +115,12 @@ defmodule KcalCountTest do
       producer: "X Farmer"
     }
 
-    products = KcalCount.init()
-    products = KcalCount.add_one(test_lentil, products)
-    products = KcalCount.add_one(test_potato, products)
-    potato = KcalCount.get_one(:Potato, products)
-    assert test_potato == potato
+    products = Products.new()
+    {:ok, products} = Products.add(products, test_potato)
+    assert {:not_found, nil} == Products.get(products, "Orange")
   end
 
-  test "Check KcalCount.get_one() on no such product" do
+  test "Check Product.find() if returns single match by name only" do
     test_lentil = %Product{
       weigth: 100,
       proteins: 25,
@@ -206,17 +162,14 @@ defmodule KcalCountTest do
       producer: "X Farmer"
     }
 
-    products = KcalCount.init()
-    products = KcalCount.add_one(test_lentil, products)
-    products = KcalCount.add_one(test_potato, products)
-    pear = KcalCount.get_one(:Pear, products)
-    assert nil == pear
+    products = Products.new()
+    {:ok, products} = Products.add(products, test_lentil)
+    {:ok, products} = Products.add(products, test_potato)
+    assert {:ok, [test_lentil]} == Products.find(~r/entil/, products, [:name])
   end
 
-  test "Check KcalCount.get_all() if products returned" do
-
+  test "Check Product.find() if returns right two matches by two fields" do
     test_lentil = %Product{
-      kcal: 353,
       weigth: 100,
       proteins: 25,
       carbs: %Carbs{
@@ -257,63 +210,164 @@ defmodule KcalCountTest do
       producer: "X Farmer"
     }
 
-    test_products = %{Lentil: test_lentil, Potato: test_potato}
-    products = KcalCount.init()
-    products = KcalCount.add_one(test_potato, products)
-    products = KcalCount.add_one(test_lentil, products)
-    products = KcalCount.get_all(products)
-    assert test_products == products
+    test_something = %Product{
+      kcal: 76.9,
+      weigth: 100,
+      proteins: 2,
+      carbs: %Carbs{
+        total: 17,
+        other: 0,
+        sugars: 0.78,
+        dietary_fiber: 2.2
+      },
+      fats: %Fats{
+        total: 0.09,
+        saturated: 0.03,
+        monounsaturated: 0,
+        polyunsaturated: 0.04
+      },
+      name: "something",
+      brand: "something",
+      producer: "something"
+    }
+
+    products = Products.new()
+    {:ok, products} = Products.add(products, test_lentil)
+    {:ok, products} = Products.add(products, test_potato)
+    {:ok, products} = Products.add(products, test_something)
+    {:ok, result} = Products.find(~r/(nd|er)/, products, [:producer, :brand])
+    assert test_lentil in result and test_potato in result
+    assert test_something not in result
   end
 
-  test "Check KcalCount.get_all() on empty products" do
-    products = KcalCount.init()
-    products = KcalCount.get_all(products)
-    assert %{} == products
-  end
 
   test "Check KcalCount.Calc.adjust_by_weigth() for correct adjustments" do
-    multiplier = 0.44999999999999996
+    # base values multiplied by 0.44999999999999996
     test_lentil = %Product{
-      kcal: 353 * multiplier,
-      weigth: 45,
-      proteins: 25 * multiplier,
-      carbs: %Carbs{
-        total: 75.7 * multiplier,
-        other: 63 * multiplier,
-        sugars: 2 * multiplier,
-        dietary_fiber: 10.7 * multiplier
+      alcohols: %KcalCount.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
+      brand: "Some Brand",
+      carbs: %KcalCount.Carbs{
+        dietary_fiber: 4.8149999999999995,
+        other: 28.349999999999998,
+        starch: 0.0,
+        sugars: 0.8999999999999999,
+        total: 34.065
       },
-      fats: %Fats{
-        total: 1 * multiplier,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
+      description: "",
+      fats: %KcalCount.Fats{
+        monounsaturated: 0.0,
+        polyunsaturated: 0.0,
+        saturated: 0.0,
+        total: 0.44999999999999996
+      },
+      kcal: 158.85,
+      minerals: %KcalCount.Minerals{
+        calcium: 0.0,
+        chloride: 0.0,
+        chromium: 0.0,
+        copper: 0.0,
+        fluoride: 0.0,
+        iodide: 0.0,
+        iodine: 0.0,
+        iron: 0.0,
+        magnesium: 0.0,
+        manganese: 0.0,
+        molybdenum: 0.0,
+        phosphorus: 0.0,
+        potassium: 0.0,
+        selenium: 0.0,
+        sodium: 0.0,
+        sulfur: 0.0,
+        zinc: 0.0
       },
       name: "Lentil",
-      brand: "Some Brand",
-      producer: "Some producer"
-    }
-
-    multiplier = 2
-    test_potato = %Product{
-      kcal: 76.9 * multiplier,
-      weigth: 200,
-      proteins: 2 * multiplier,
-      carbs: %Carbs{
-        total: 17 * multiplier,
-        other: 0,
-        sugars: 0.78 * multiplier,
-        dietary_fiber: 2.2 * multiplier
+      note: "",
+      origin: [],
+      produced: [],
+      producer: "Some producer",
+      proteins: 11.249999999999998,
+      salt: 0.0,
+      vitamins: %KcalCount.Vitamins{
+        choline: 0.0,
+        vitamin_a: 0.0,
+        vitamin_b1: 0.0,
+        vitamin_b12: 0.0,
+        vitamin_b2: 0.0,
+        vitamin_b3: 0.0,
+        vitamin_b4: 0.0,
+        vitamin_b6: 0.0,
+        vitamin_b9: 0.0,
+        vitamin_c: 0.0,
+        vitamin_d: 0.0,
+        vitamin_e: 0.0,
+        vitamin_k: 0.0
       },
-      fats: %Fats{
-        total: 0.09 * multiplier,
-        saturated: 0.03 * multiplier,
-        monounsaturated: 0 * multiplier,
-        polyunsaturated: 0.04 * multiplier
+      volume: 0.0,
+      weigth: 45
+      }
+
+    # base values multiplied by 2
+    test_potato = %KcalCount.Product{
+      alcohols: %KcalCount.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
+      brand: "X Potato",
+      carbs: %KcalCount.Carbs{
+        dietary_fiber: 4.4,
+        other: 0.0,
+        starch: 0.0,
+        sugars: 1.56,
+        total: 34.0
+      },
+      description: "",
+      fats: %KcalCount.Fats{
+      monounsaturated: 0.0,
+      polyunsaturated: 0.08,
+      saturated: 0.06,
+      total: 0.18
+      },
+      kcal: 153.8,
+      minerals: %KcalCount.Minerals{
+        calcium: 0.0,
+        chloride: 0.0,
+        chromium: 0.0,
+        copper: 0.0,
+        fluoride: 0.0,
+        iodide: 0.0,
+        iodine: 0.0,
+        iron: 0.0,
+        magnesium: 0.0,
+        manganese: 0.0,
+        molybdenum: 0.0,
+        phosphorus: 0.0,
+        potassium: 0.0,
+        selenium: 0.0,
+        sodium: 0.0,
+        sulfur: 0.0,
+        zinc: 0.0
       },
       name: "Potato",
-      brand: "X Potato",
-      producer: "X Farmer"
+      note: "",
+      origin: [],
+      produced: [],
+      producer: "X Farmer",
+      proteins: 4.0,
+      salt: 0.0,
+      vitamins: %KcalCount.Vitamins{
+        choline: 0.0,
+        vitamin_a: 0.0,
+        vitamin_b1: 0.0,
+        vitamin_b12: 0.0,
+        vitamin_b2: 0.0,
+        vitamin_b3: 0.0,
+        vitamin_b4: 0.0,
+        vitamin_b6: 0.0,
+        vitamin_b9: 0.0,
+        vitamin_c: 0.0,
+        vitamin_d: 0.0,
+        vitamin_e: 0.0,
+        vitamin_k: 0.0
+      },
+      volume: 0.0,
+      weigth: 200
     }
 
     lentil = %Product{
@@ -358,12 +412,12 @@ defmodule KcalCountTest do
       producer: "X Farmer"
     }
 
-    test_products = %{Lentil: test_lentil, Potato: test_potato}
-    products = KcalCount.init()
-    products = Calc.adjust_by_weigth(lentil, 45) |> KcalCount.add_one(products)
-    products = Calc.adjust_by_weigth(potato, 200) |> KcalCount.add_one(products)
-    products = KcalCount.get_all(products)
+    test_products = %Products{map: %{test_lentil => nil, test_potato => nil}}
+    products = Products.new()
+    {:ok, products} = Products.add(products, Calc.adjust_by_weigth(lentil, 45))
+    {:ok, products} = Products.add(products, Calc.adjust_by_weigth(potato, 200))
     assert test_products == products
+    #assert true === Map.equal?(test_products, products)
   end
 
   test "Check KcalCount.Calc.multiplier()" do
