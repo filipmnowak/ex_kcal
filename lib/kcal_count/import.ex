@@ -36,48 +36,68 @@ defmodule KcalCount.Import do
     )
   end
 
-  def map(data, product) do
-    keys = %{
-      "Name": :name,
-      "Synonyms": :note,
-      "Category": :description,
-      "Matrix unit": [:weigth, :volume],
-      "Energy, kilocalories (kcal)": :kcal,
-      "Fat, total (g)": :total,
-      "Fatty acids, saturated (g)": :saturated,
-      "Fatty acids, monounsaturated (g)": :monounsaturated,
-      "Fatty acids, polyunsaturated (g)": :polyunsaturated,
-      "Carbohydrates, available (g)": :total,
-      "Sugars (g)": :sugars,
-      "Starch (g)": :starch,
-      "Dietary fibres (g)": :diatery_fiber,
-      "Protein (g)": :proteins,
-      "Salt (NaCl) (g)": :salt,
-      "Alcohol (g)": :total,
-      "Wasser (g)": :water,
-      "Vitamin A activity, RE (µg-RE)": "",
-      "Vitamin A activity, RAE (µg-RE)": "",
-      "All-trans retinol equivalents (µg-RE)": "",
-      "Beta- carotene activity (µg-BCE)": "",
-      "Beta-carotene (µg)": "",
-      "Vitamin B1 (thiamine) (mg)": "vitamin_b1",
-      "Vitamin B2 (riboflavin) (mg)": "vitamin_b2",
-      "Vitamin B6 (pyridoxine) (mg)": "vitamin_b6",
-      "Vitamin B12 (cobalamin) (µg)": "vitamin_b12",
-      "Vitamin C (ascorbic acid) (mg)": "vitamin_c",
-      "Vitamin D (calciferol) (µg)": "vitamin_d",
-      "Vitamin E activity (mg-ATE)": "vitamin_e",
-      "Potassium (K) (mg)": "potassium",
-      "Sodium (Na) (mg)": "sodium",
-      "Chloride (Cl) (mg)": "chloride",
-      "Calcium (Ca) (mg)": "calcium",
-      "Magnesium (Mg) (mg)": "magnesium",
-      "Phosphorus (P) (mg)": "phosphorus",
-      "Iron (Fe) (mg)": "iron",
-      "Iodide (I) (µg)": "iodide",
-      "Zinc (Zn) (mg)": "zinc",
-      "Selenium (Se) (µg)": "selenium"
-    }
+  def keys() do
+    [
+      ["Name", :name],
+      ["Synonyms", :note],
+      ["Category", :description],
+      ["Matrix unit", [:weigth, :volume]],
+      ["Energy, kilocalories (kcal)", :kcal],
+      ["Fat, total (g)", {:fats, :total}],
+      ["Fatty acids, saturated (g)", {:fats, :saturated}],
+      ["Fatty acids, monounsaturated (g)", {:fats, :monounsaturated}],
+      ["Fatty acids, polyunsaturated (g)", {:fats, :polyunsaturated}],
+      ["Carbohydrates, available (g)", {:carbs, :total}],
+      ["Sugars (g)", {:carbs, :sugars}],
+      ["Starch (g)", {:carbs, :starch}],
+      ["Dietary fibres (g)", {:carbs, :diatery_fiber}],
+      ["Protein (g)", :proteins],
+      ["Salt (NaCl) (g)", :salt],
+      ["Alcohol (g)", {:alcohols, :total}],
+      ["Wasser (g)", :water],
+      ["Vitamin A activity, RE (µg-RE)", {:vitamins, ""}],
+      ["Vitamin A activity, RAE (µg-RE)", {:vitamins, ""}],
+      ["All-trans retinol equivalents (µg-RE)", {:vitamins, ""}],
+      ["Beta- carotene activity (µg-BCE)", {:vitamins, ""}],
+      ["Beta-carotene (µg)", {:vitamns, ""}],
+      ["Vitamin B1 (thiamine) (mg)", {:vitamins, "vitamin_b1"}],
+      ["Vitamin B2 (riboflavin) (mg)", {:vitamins, "vitamin_b2"}],
+      ["Vitamin B6 (pyridoxine) (mg)", {:vitamins, "vitamin_b6"}],
+      ["Vitamin B12 (cobalamin) (µg)", {:vitamins, "vitamin_b12"}],
+      ["Vitamin C (ascorbic acid) (mg)", {:vitamins, "vitamin_c"}],
+      ["Vitamin D (calciferol) (µg)", {:vitamins, "vitamin_d"}],
+      ["Vitamin E activity (mg-ATE)", {:vitamins,"vitamin_e"}],
+      ["Potassium (K) (mg)", {:minerals, "potassium"}],
+      ["Sodium (Na) (mg)", {:minerals, "sodium"}],
+      ["Chloride (Cl) (mg)", {:minerals, "chloride"}],
+      ["Calcium (Ca) (mg)", {:minerals, "calcium"}],
+      ["Magnesium (Mg) (mg)", {:minerals, "magnesium"}],
+      ["Phosphorus (P) (mg)", {:minerals, "phosphorus"}],
+      ["Iron (Fe) (mg)", {:minerals, "iron"}],
+      ["Iodide (I) (µg)", {:minerals, "iodide"}],
+      ["Zinc (Zn) (mg)", {:minerals, "zinc"}],
+      ["Selenium (Se) (µg)", {:minerals, "selenium"}]
+    ]
+  end
+
+  def map(column, mapping \\ &KcalCount.Import.keys/0) when is_integer(column) and column > 0 do
+    mapping = mapping.()
+    cond do
+      length(mapping) < column -> {:err, :out_of_bounds}
+      :else ->
+        {:ok, mapping
+        |> List.to_tuple()
+        |> elem(column)}
+    end
+  end
+
+  def get_unit(key) when is_bitstring(key) do
+    case Regex.run(~r/\([^)]+\)$/, key, capture: :first) do
+      ["(g)"] -> :g
+      ["(mg)"] -> :mg
+      ["(µg)"] -> :µg
+      _ -> :"n/a"
+    end
   end
 
   def swiss_food_composition_database_V6_1_csv(
@@ -87,11 +107,10 @@ defmodule KcalCount.Import do
     filter \\ &filter/1,
     map \\ &map/2
   ) do
-    product = %KcalCount.Product{}
-    path
+    products = KcalCount.Products.init()
+    data = path
     |> get_data.()
     |> deserialize.()
     |> filter.()
-    |> map.(product)
   end
 end
