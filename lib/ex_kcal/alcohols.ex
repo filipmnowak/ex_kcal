@@ -1,4 +1,4 @@
-defmodule KcalCount.Alcohols do
+defmodule ExKcal.Alcohols do
 
   defstruct(
     total: 0,

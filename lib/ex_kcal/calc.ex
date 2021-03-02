@@ -1,4 +1,4 @@
-defmodule KcalCount.Calc do
+defmodule ExKcal.Calc do
 
   defguard is_non_negative_number(value) when is_number(value) and value >= 0
 

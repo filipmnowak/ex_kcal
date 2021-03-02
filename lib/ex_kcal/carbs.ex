@@ -1,4 +1,4 @@
-defmodule KcalCount.Carbs do
+defmodule ExKcal.Carbs do
 
   defstruct(
     total: 0,

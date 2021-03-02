@@ -1,13 +1,13 @@
-defmodule KcalCountTest do
+defmodule ExKcalTest do
 
   use ExUnit.Case
-  doctest KcalCount
+  doctest ExKcal
 
-  alias KcalCount.Products
-  alias KcalCount.Product
-  alias KcalCount.Carbs
-  alias KcalCount.Fats
-  alias KcalCount.Calc
+  alias ExKcal.Products
+  alias ExKcal.Product
+  alias ExKcal.Carbs
+  alias ExKcal.Fats
+  alias ExKcal.Calc
 
   test "Check Products.new()" do
     assert %Products{map: %{}} == Products.new()
@@ -241,12 +241,12 @@ defmodule KcalCountTest do
   end
 
 
-  test "Check KcalCount.Calc.adjust_by_weigth() for correct adjustments" do
+  test "Check ExKcal.Calc.adjust_by_weigth() for correct adjustments" do
     # base values multiplied by 0.44999999999999996
     test_lentil = %Product{
-      alcohols: %KcalCount.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
+      alcohols: %ExKcal.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
       brand: "Some Brand",
-      carbs: %KcalCount.Carbs{
+      carbs: %ExKcal.Carbs{
         dietary_fiber: 4.8149999999999995,
         other: 28.349999999999998,
         starch: 0.0,
@@ -254,14 +254,14 @@ defmodule KcalCountTest do
         total: 34.065
       },
       description: "",
-      fats: %KcalCount.Fats{
+      fats: %ExKcal.Fats{
         monounsaturated: 0.0,
         polyunsaturated: 0.0,
         saturated: 0.0,
         total: 0.44999999999999996
       },
       kcal: 158.85,
-      minerals: %KcalCount.Minerals{
+      minerals: %ExKcal.Minerals{
         calcium: 0.0,
         chloride: 0.0,
         chromium: 0.0,
@@ -287,7 +287,7 @@ defmodule KcalCountTest do
       producer: "Some producer",
       proteins: 11.249999999999998,
       salt: 0.0,
-      vitamins: %KcalCount.Vitamins{
+      vitamins: %ExKcal.Vitamins{
         choline: 0.0,
         vitamin_a: 0.0,
         vitamin_b1: 0.0,
@@ -307,10 +307,10 @@ defmodule KcalCountTest do
       }
 
     # base values multiplied by 2
-    test_potato = %KcalCount.Product{
-      alcohols: %KcalCount.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
+    test_potato = %ExKcal.Product{
+      alcohols: %ExKcal.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
       brand: "X Potato",
-      carbs: %KcalCount.Carbs{
+      carbs: %ExKcal.Carbs{
         dietary_fiber: 4.4,
         other: 0.0,
         starch: 0.0,
@@ -318,14 +318,14 @@ defmodule KcalCountTest do
         total: 34.0
       },
       description: "",
-      fats: %KcalCount.Fats{
+      fats: %ExKcal.Fats{
       monounsaturated: 0.0,
       polyunsaturated: 0.08,
       saturated: 0.06,
       total: 0.18
       },
       kcal: 153.8,
-      minerals: %KcalCount.Minerals{
+      minerals: %ExKcal.Minerals{
         calcium: 0.0,
         chloride: 0.0,
         chromium: 0.0,
@@ -351,7 +351,7 @@ defmodule KcalCountTest do
       producer: "X Farmer",
       proteins: 4.0,
       salt: 0.0,
-      vitamins: %KcalCount.Vitamins{
+      vitamins: %ExKcal.Vitamins{
         choline: 0.0,
         vitamin_a: 0.0,
         vitamin_b1: 0.0,
@@ -420,7 +420,7 @@ defmodule KcalCountTest do
     #assert true === Map.equal?(test_products, products)
   end
 
-  test "Check KcalCount.Calc.multiplier()" do
+  test "Check ExKcal.Calc.multiplier()" do
     assert 1.0 == Calc.multiplier(1, 1)
     assert 2.0 == Calc.multiplier(100, 200)
     assert 3.3333333333333335 == Calc.multiplier(45, 150)

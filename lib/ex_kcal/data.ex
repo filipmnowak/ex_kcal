@@ -1,10 +1,10 @@
-defmodule KcalCount.Data do
-  alias KcalCount.Product, as: Product
-  alias KcalCount.Carbs, as: Carbs
-  alias KcalCount.Fats, as: Fats
-  alias KcalCount.Vitamins, as: Vitamins
-  alias KcalCount.Minerals, as: Minerals
-  alias KcalCount.Alcohols, as: Alcohols
+defmodule ExKcal.Data do
+  alias ExKcal.Product, as: Product
+  alias ExKcal.Carbs, as: Carbs
+  alias ExKcal.Fats, as: Fats
+  alias ExKcal.Vitamins, as: Vitamins
+  alias ExKcal.Minerals, as: Minerals
+  alias ExKcal.Alcohols, as: Alcohols
 
   @products [
     %Product{

@@ -1,4 +1,4 @@
-defmodule KcalCount.Vitamins do
+defmodule ExKcal.Vitamins do
 
   defstruct(
     vitamin_a: 0,

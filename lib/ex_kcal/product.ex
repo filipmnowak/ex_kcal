@@ -1,10 +1,10 @@
-defmodule KcalCount.Product do
+defmodule ExKcal.Product do
 
-  alias KcalCount.Carbs
-  alias KcalCount.Fats
-  alias KcalCount.Vitamins
-  alias KcalCount.Minerals
-  alias KcalCount.Alcohols
+  alias ExKcal.Carbs
+  alias ExKcal.Fats
+  alias ExKcal.Vitamins
+  alias ExKcal.Minerals
+  alias ExKcal.Alcohols
 
   defstruct(
     kcal: 0,

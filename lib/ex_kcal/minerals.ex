@@ -1,4 +1,4 @@
-defmodule KcalCount.Minerals do
+defmodule ExKcal.Minerals do
 
   defstruct(
     calcium: 0,

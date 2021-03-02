@@ -1,4 +1,4 @@
-defmodule KcalCount.Units do
+defmodule ExKcal.Units do
   def prefixes() do
     [
       {"yotta", "Y", 1000000000000000000000000},

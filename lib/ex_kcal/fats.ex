@@ -1,4 +1,4 @@
-defmodule KcalCount.Fats do
+defmodule ExKcal.Fats do
 
   defstruct(
     total: 0,

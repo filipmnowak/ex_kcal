@@ -1,4 +1,4 @@
-defmodule KcalCount.Recipe.Step do
+defmodule ExKcal.Recipe.Step do
 
   @enforce_keys [:instructions, :time]
   defstruct(

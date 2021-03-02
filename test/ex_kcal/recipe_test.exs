@@ -1,4 +1,4 @@
-defmodule KcalCount.RecipeTest do
+defmodule ExKcal.RecipeTest do
   use ExUnit.Case
 
   test "false!" do

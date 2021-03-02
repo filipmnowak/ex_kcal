@@ -1,7 +1,7 @@
-defmodule KcalCount.Products do
+defmodule ExKcal.Products do
 
-  alias KcalCount.Product
-  alias KcalCount.Products
+  alias ExKcal.Product
+  alias ExKcal.Products
 
   @enforce_keys [:map]
   defstruct(map: %{})

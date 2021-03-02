@@ -1,7 +1,7 @@
-defmodule KcalCount.Recipe do
+defmodule ExKcal.Recipe do
 
-  alias KcalCount.Recipe
-  alias KcalCount.Recipe.Step
+  alias ExKcal.Recipe
+  alias ExKcal.Recipe.Step
 
   defstruct(
     steps: []

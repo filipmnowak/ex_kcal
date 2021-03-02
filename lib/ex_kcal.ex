@@ -1,6 +1,6 @@
-defmodule KcalCount do
+defmodule ExKcal do
 
-  alias KcalCount.Products
+  alias ExKcal.Products
 
   defdelegate new(), to: Products
   defdelegate add(product, products), to: Products
