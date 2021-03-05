@@ -35,7 +35,7 @@ defmodule ExKcal.Products do
   @doc """
   Get `Product` by content of the `name` field. Exact match is required.
   """
-  @spec get(t(), String.t()) :: {} | {:not_found, nil}
+  @spec get(t(), String.t()) :: {:ok, Product.t()} | {:not_found, nil}
   def get(products, name) when is_struct(products, Products) and is_bitstring(name) do
     product = products.map
     |> Map.to_list()
