@@ -1,11 +1,14 @@
-defmodule KcalCount.MixProject do
+defmodule ExKcal.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :kcal_count,
-      version: "0.1.0",
-      elixir: "~> 1.8",
+      name: "ExKcal",
+      package: package(),
+      description: description(),
+      app: :ex_kcal,
+      version: "0.0.1",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -21,8 +24,22 @@ defmodule KcalCount.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:dialyxir, "~> 1.0", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.23", only: :dev, runtime: false},
     ]
   end
+
+  defp package() do
+        [
+      # These are the default files included in the package
+      files: ~w(lib .formatter.exs mix.exs README.md LICENSE.txt),
+      licenses: ["AGPL-3.0-or-later"],
+      links: %{"GitHub" => "https://github.com/filipmnowak/ex_kcal"}
+    ]
+  end
+
+  defp description() do
+    "Handle culinary recipes and calculate their nutritional value (pre-alpha / WIP)."
+  end
 end
+

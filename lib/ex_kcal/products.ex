@@ -15,14 +15,26 @@ defmodule ExKcal.Products do
   @enforce_keys [:map]
   defstruct(map: %{})
 
+  @doc """
+  Get new instance of `Products` struct. Equivalent of `%Products{map: %{}}`.
+  """
+  @spec new() :: t()
   def new() do
     %Products{map: %{}}
   end
 
+  @doc """
+  Add `Product` to `Products`.
+  """
+  @spec add(t(), %Product{}) :: {:ok, t()} | {:noop, :already_member}
   def add(products, product) when is_struct(products, Products) and is_struct(product, Product) do
     Map.has_key?(products.map, product) && {:noop, :already_member} || {:ok, Map.put(products, :map, Map.put(products.map, product, nil))}
   end
 
+  @doc """
+  Get `Product` by content of the `name` field. Exact match is required.
+  """
+  @spec get(t(), String.t()) :: {} | {:not_found, nil}
   def get(products, name) when is_struct(products, Products) and is_bitstring(name) do
     product = products.map
     |> Map.to_list()
@@ -32,18 +44,24 @@ defmodule ExKcal.Products do
       end
     )
     case is_nil(product) do
-      true -> {:not_found, product}
+      true -> {:not_found, nil}
       false -> {:ok, elem(product, 0)}
     end
   end
 
+  @doc """
+  Find `Product`s by any field.
+  ## Notes
+  Match is done against space-separated, merged list of requested fields. This means that there is only one end of line, not
+  multiple like in case of multiple, separate fields.
+  """
   @spec find(Regex.t(), t(), list()) :: {:ok, list()} | {:not_found, nil}
   def find(regex, products, fields \\ [:name, :description])
     when is_struct(regex, Regex) and is_struct(products, Products) and is_list(fields) and length(fields) > 0 do
       found = products.map
-      |> Map.to_list()
+      |> Map.keys()
       |> Enum.filter(
-        fn {p, _} ->
+        fn p ->
           Regex.match?(
             regex,
             Enum.map(fields, fn f -> Map.get(p, f) end)
@@ -51,7 +69,6 @@ defmodule ExKcal.Products do
           )
         end
       )
-      |> Enum.map(fn {p, _} -> p end)
       case length(found) > 0 do
         true -> {:ok, found}
         false -> {:not_found, nil}
