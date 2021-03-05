@@ -240,6 +240,54 @@ defmodule ExKcalTest do
     assert test_something not in result
   end
 
+  test "Check Product.find() if returns right result for lack of matches" do
+    test_lentil = %Product{
+      weigth: 100,
+      proteins: 25,
+      carbs: %Carbs{
+        total: 75.7,
+        other: 63,
+        sugars: 2,
+        dietary_fiber: 10.7
+      },
+      fats: %Fats{
+        total: 1,
+        saturated: 0,
+        monounsaturated: 0,
+        polyunsaturated: 0
+      },
+      name: "Lentil",
+      brand: "Some Brand",
+      producer: "Some producer"
+    }
+
+    test_potato = %Product{
+      kcal: 76.9,
+      weigth: 100,
+      proteins: 2,
+      carbs: %Carbs{
+        total: 17,
+        other: 0,
+        sugars: 0.78,
+        dietary_fiber: 2.2
+      },
+      fats: %Fats{
+        total: 0.09,
+        saturated: 0.03,
+        monounsaturated: 0,
+        polyunsaturated: 0.04
+      },
+      name: "Potato",
+      brand: "X Potato",
+      producer: "X Farmer"
+    }
+
+    products = Products.new()
+    {:ok, products} = Products.add(products, test_lentil)
+    {:ok, products} = Products.add(products, test_potato)
+    assert {:not_found, nil} == Products.find(~r/i don't think it's there/, products)
+  end
+
 
   test "Check ExKcal.Calc.adjust_by_weigth() for correct adjustments" do
     # base values multiplied by 0.44999999999999996
