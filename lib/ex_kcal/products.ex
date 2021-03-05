@@ -7,10 +7,11 @@ defmodule ExKcal.Products do
   very few primitives accompanying it. `ExKcal.Products` offers something similar, doesn't hide implementation details, and
   builds upon them.
   """
-  @type t :: %__MODULE__{}
 
   alias ExKcal.Product
   alias ExKcal.Products
+
+  @type t :: %__MODULE__{map: %{Product.t() => nil}}
 
   @enforce_keys [:map]
   defstruct(map: %{})

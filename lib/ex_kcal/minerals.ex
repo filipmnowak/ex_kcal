@@ -20,4 +20,24 @@ defmodule ExKcal.Minerals do
     zinc: 0
   )
 
+  @type t :: %__MODULE__{
+    calcium: non_neg_integer(),
+    chloride: non_neg_integer(),
+    chromium: non_neg_integer(),
+    copper: non_neg_integer(),
+    fluoride: non_neg_integer(),
+    iodine: non_neg_integer(),
+    iodide: non_neg_integer(),
+    iron: non_neg_integer(),
+    magnesium: non_neg_integer(),
+    manganese: non_neg_integer(),
+    molybdenum: non_neg_integer(),
+    phosphorus: non_neg_integer(),
+    potassium: non_neg_integer(),
+    selenium: non_neg_integer(),
+    sodium: non_neg_integer(),
+    sulfur: non_neg_integer(),
+    zinc: non_neg_integer()
+  }
+
 end

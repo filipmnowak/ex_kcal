@@ -8,4 +8,12 @@ defmodule ExKcal.Carbs do
     dietary_fiber: 0
   )
 
+  @type t :: %__MODULE__{
+    total: non_neg_integer(),
+    starch: non_neg_integer(),
+    other: non_neg_integer(),
+    sugars: non_neg_integer(),
+    dietary_fiber: non_neg_integer
+  }
+
 end

@@ -16,4 +16,20 @@ defmodule ExKcal.Vitamins do
     vitamin_k: 0
   )
 
+  @type t :: %__MODULE__{
+    vitamin_a: non_neg_integer(),
+    vitamin_b1: non_neg_integer(),
+    vitamin_b2: non_neg_integer(),
+    vitamin_b3: non_neg_integer(),
+    vitamin_b4: non_neg_integer(),
+    vitamin_b6: non_neg_integer(),
+    vitamin_b12: non_neg_integer(),
+    vitamin_c: non_neg_integer(),
+    choline: non_neg_integer(),
+    vitamin_d: non_neg_integer(),
+    vitamin_e: non_neg_integer(),
+    vitamin_b9: non_neg_integer(),
+    vitamin_k: non_neg_integer()
+  }
+
 end

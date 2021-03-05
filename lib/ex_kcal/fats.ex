@@ -7,4 +7,6 @@ defmodule ExKcal.Fats do
     polyunsaturated: 0
   )
 
+  @type t :: %__MODULE__{total: non_neg_integer(), saturated: non_neg_integer(), monounsaturated: non_neg_integer(), polyunsaturated: non_neg_integer()}
+
 end
