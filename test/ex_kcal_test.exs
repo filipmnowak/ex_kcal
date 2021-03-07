@@ -5,6 +5,9 @@ defmodule ExKcalTest do
 
   alias ExKcal.Products
   alias ExKcal.Product
+  alias ExKcal.Minerals
+  alias ExKcal.Alcohols
+  alias ExKcal.Vitamins
   alias ExKcal.Carbs
   alias ExKcal.Fats
   alias ExKcal.Calc
@@ -15,19 +18,19 @@ defmodule ExKcalTest do
 
   test "Check Products.add() if product added" do
     test_lentil = %Product{
-      weigth: 100,
-      proteins: 25,
+      weight: {100.0, :g},
+      proteins: {25.0, :g},
       carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
+        total: {75.7, :g},
+        other: {63.0, :g},
+        sugars: {2.0, :g},
+        dietary_fiber: {10.7, :g}
       },
       fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
+        total: {1.0, :g},
+        saturated: {0.0, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.0, :g}
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -42,19 +45,19 @@ defmodule ExKcalTest do
 
   test "Check Products.add() if product not added because it's already there" do
     test_lentil = %Product{
-      weigth: 100,
-      proteins: 25,
+      weight: {100.0, :g},
+      proteins: {25.0, :g},
       carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
+        total: {75.7, :g},
+        other: {63.0, :g},
+        sugars: {2.0, :g},
+        dietary_fiber: {10.7, :g}
       },
       fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
+        total: {1.0, :g},
+        saturated: {0.0, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.0, :g}
       },
       name: "Lentil",
       brand: "Some Brand",
@@ -69,19 +72,19 @@ defmodule ExKcalTest do
   test "Check Product.get() if product returned" do
     test_potato = %Product{
       kcal: 76.9,
-      weigth: 100,
-      proteins: 2,
+      weight: {100.0, :g},
+      proteins: {2.0, :g},
       carbs: %Carbs{
-        total: 17,
-        other: 0,
-        sugars: 0.78,
-        dietary_fiber: 2.2
+        total: {17.0, :g},
+        other: {0.0, :g},
+        sugars: {0.78, :g},
+        dietary_fiber: {2.2, :g}
       },
       fats: %Fats{
-        total: 0.09,
-        saturated: 0.03,
-        monounsaturated: 0,
-        polyunsaturated: 0.04
+        total: {0.09, :g},
+        saturated: {0.03, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.04, :g}
       },
       name: "Potato",
       brand: "X Potato",
@@ -96,19 +99,19 @@ defmodule ExKcalTest do
   test "Check Product.get() if missing product not returned" do
     test_potato = %Product{
       kcal: 76.9,
-      weigth: 100,
-      proteins: 2,
+      weight: {100.0, :g},
+      proteins: {2.0, :g},
       carbs: %Carbs{
-        total: 17,
-        other: 0,
-        sugars: 0.78,
-        dietary_fiber: 2.2
+        total: {17.0, :g},
+        other: {0.0, :g},
+        sugars: {0.78, :g},
+        dietary_fiber: {2.2, :g}
       },
       fats: %Fats{
-        total: 0.09,
-        saturated: 0.03,
-        monounsaturated: 0,
-        polyunsaturated: 0.04
+        total: {0.09, :g},
+        saturated: {0.03, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.04, :g}
       },
       name: "Potato",
       brand: "X Potato",
@@ -122,40 +125,39 @@ defmodule ExKcalTest do
 
   test "Check Product.find() if returns single match by name only" do
     test_lentil = %Product{
-      weigth: 100,
-      proteins: 25,
+      weight: {100.0, :g},
+      proteins: {25.0, :g},
       carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
+        total: {75.7, :g},
+        other: {63.0, :g},
+        sugars: {2.0, :g},
+        dietary_fiber: {10.7, :g}
       },
       fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
+        total: {1.0, :g},
+        saturated: {0.0, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.0, :g}
       },
       name: "Lentil",
       brand: "Some Brand",
       producer: "Some producer"
     }
-
     test_potato = %Product{
       kcal: 76.9,
-      weigth: 100,
-      proteins: 2,
+      weight: {100.0, :g},
+      proteins: {2.0, :g},
       carbs: %Carbs{
-        total: 17,
-        other: 0,
-        sugars: 0.78,
-        dietary_fiber: 2.2
+        total: {17.0, :g},
+        other: {0.0, :g},
+        sugars: {0.78, :g},
+        dietary_fiber: {2.2, :g}
       },
       fats: %Fats{
-        total: 0.09,
-        saturated: 0.03,
-        monounsaturated: 0,
-        polyunsaturated: 0.04
+        total: {0.09, :g},
+        saturated: {0.03, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.04, :g}
       },
       name: "Potato",
       brand: "X Potato",
@@ -170,62 +172,45 @@ defmodule ExKcalTest do
 
   test "Check Product.find() if returns right two matches by two fields" do
     test_lentil = %Product{
-      weigth: 100,
-      proteins: 25,
+      weight: {100.0, :g},
+      proteins: {25.0, :g},
       carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
+        total: {75.7, :g},
+        other: {63.0, :g},
+        sugars: {2.0, :g},
+        dietary_fiber: {10.7, :g}
       },
       fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
+        total: {1.0, :g},
+        saturated: {0.0, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.0, :g}
       },
       name: "Lentil",
       brand: "Some Brand",
       producer: "Some producer"
     }
-
     test_potato = %Product{
       kcal: 76.9,
-      weigth: 100,
-      proteins: 2,
+      weight: {100.0, :g},
+      proteins: {2.0, :g},
       carbs: %Carbs{
-        total: 17,
-        other: 0,
-        sugars: 0.78,
-        dietary_fiber: 2.2
+        total: {17.0, :g},
+        other: {0.0, :g},
+        sugars: {0.78, :g},
+        dietary_fiber: {2.2, :g}
       },
       fats: %Fats{
-        total: 0.09,
-        saturated: 0.03,
-        monounsaturated: 0,
-        polyunsaturated: 0.04
+        total: {0.09, :g},
+        saturated: {0.03, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.04, :g}
       },
       name: "Potato",
       brand: "X Potato",
       producer: "X Farmer"
     }
-
     test_something = %Product{
-      kcal: 76.9,
-      weigth: 100,
-      proteins: 2,
-      carbs: %Carbs{
-        total: 17,
-        other: 0,
-        sugars: 0.78,
-        dietary_fiber: 2.2
-      },
-      fats: %Fats{
-        total: 0.09,
-        saturated: 0.03,
-        monounsaturated: 0,
-        polyunsaturated: 0.04
-      },
       name: "something",
       brand: "something",
       producer: "something"
@@ -242,40 +227,39 @@ defmodule ExKcalTest do
 
   test "Check Product.find() if returns right result for lack of matches" do
     test_lentil = %Product{
-      weigth: 100,
-      proteins: 25,
+      weight: {100.0, :g},
+      proteins: {25.0, :g},
       carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
+        total: {75.7, :g},
+        other: {63.0, :g},
+        sugars: {2.0, :g},
+        dietary_fiber: {10.7, :g}
       },
       fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
+        total: {1.0, :g},
+        saturated: {0.0, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.0, :g}
       },
       name: "Lentil",
       brand: "Some Brand",
       producer: "Some producer"
     }
-
     test_potato = %Product{
       kcal: 76.9,
-      weigth: 100,
-      proteins: 2,
+      weight: {100.0, :g},
+      proteins: {2.0, :g},
       carbs: %Carbs{
-        total: 17,
-        other: 0,
-        sugars: 0.78,
-        dietary_fiber: 2.2
+        total: {17.0, :g},
+        other: {0.0, :g},
+        sugars: {0.78, :g},
+        dietary_fiber: {2.2, :g}
       },
       fats: %Fats{
-        total: 0.09,
-        saturated: 0.03,
-        monounsaturated: 0,
-        polyunsaturated: 0.04
+        total: {0.09, :g},
+        saturated: {0.03, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.04, :g}
       },
       name: "Potato",
       brand: "X Potato",
@@ -289,183 +273,142 @@ defmodule ExKcalTest do
   end
 
 
-  test "Check ExKcal.Calc.adjust_by_weigth() for correct adjustments" do
+  test "Check ExKcal.Calc.adjust_by_weight() for correct adjustments" do
     # base values multiplied by 0.44999999999999996
     test_lentil = %Product{
-      alcohols: %ExKcal.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
-      brand: "Some Brand",
-      carbs: %ExKcal.Carbs{
-        dietary_fiber: 4.8149999999999995,
-        other: 28.349999999999998,
-        starch: 0.0,
-        sugars: 0.8999999999999999,
-        total: 34.065
+      weight: {100.0, :g},
+      proteins: {25.0, :g},
+      carbs: %Carbs{
+        total: {75.7, :g},
+        other: {63.0, :g},
+        sugars: {2.0, :g},
+        dietary_fiber: {10.7, :g}
       },
-      description: "",
-      fats: %ExKcal.Fats{
-        monounsaturated: 0.0,
-        polyunsaturated: 0.0,
-        saturated: 0.0,
-        total: 0.44999999999999996
-      },
-      kcal: 158.85,
-      minerals: %ExKcal.Minerals{
-        calcium: 0.0,
-        chloride: 0.0,
-        chromium: 0.0,
-        copper: 0.0,
-        fluoride: 0.0,
-        iodide: 0.0,
-        iodine: 0.0,
-        iron: 0.0,
-        magnesium: 0.0,
-        manganese: 0.0,
-        molybdenum: 0.0,
-        phosphorus: 0.0,
-        potassium: 0.0,
-        selenium: 0.0,
-        sodium: 0.0,
-        sulfur: 0.0,
-        zinc: 0.0
+      fats: %Fats{
+        total: {1.0, :g},
+        saturated: {0.0, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.0, :g}
       },
       name: "Lentil",
-      note: "",
-      origin: [],
-      produced: [],
-      producer: "Some producer",
-      proteins: 11.249999999999998,
-      salt: 0.0,
-      vitamins: %ExKcal.Vitamins{
-        choline: 0.0,
-        vitamin_a: 0.0,
-        vitamin_b1: 0.0,
-        vitamin_b12: 0.0,
-        vitamin_b2: 0.0,
-        vitamin_b3: 0.0,
-        vitamin_b4: 0.0,
-        vitamin_b6: 0.0,
-        vitamin_b9: 0.0,
-        vitamin_c: 0.0,
-        vitamin_d: 0.0,
-        vitamin_e: 0.0,
-        vitamin_k: 0.0
-      },
-      volume: 0.0,
-      weigth: 45
-      }
-
+      brand: "Some Brand",
+      producer: "Some producer"
+    }
     # base values multiplied by 2
-    test_potato = %ExKcal.Product{
-      alcohols: %ExKcal.Alcohols{ethanol: 0.0, other: 0.0, total: 0.0},
+    test_potato =  %Product{
+      alcohols: %Alcohols{
+      ethanol: {nil, :none},
+      other: {nil, :none},
+      total: {nil, :none}
+    },
       brand: "X Potato",
-      carbs: %ExKcal.Carbs{
-        dietary_fiber: 4.4,
-        other: 0.0,
-        starch: 0.0,
-        sugars: 1.56,
-        total: 34.0
-      },
+      carbs: %Carbs{
+      dietary_fiber: {2.2, :g},
+      other: {0.0, :g},
+      starch: {nil, :none},
+      sugars: {0.78, :g},
+      total: {17.0, :g}
+    },
       description: "",
-      fats: %ExKcal.Fats{
-      monounsaturated: 0.0,
-      polyunsaturated: 0.08,
-      saturated: 0.06,
-      total: 0.18
+      fats: %Fats{
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.04, :g},
+        saturated: {0.03, :g},
+        total: {0.09, :g}
       },
       kcal: 153.8,
-      minerals: %ExKcal.Minerals{
-        calcium: 0.0,
-        chloride: 0.0,
-        chromium: 0.0,
-        copper: 0.0,
-        fluoride: 0.0,
-        iodide: 0.0,
-        iodine: 0.0,
-        iron: 0.0,
-        magnesium: 0.0,
-        manganese: 0.0,
-        molybdenum: 0.0,
-        phosphorus: 0.0,
-        potassium: 0.0,
-        selenium: 0.0,
-        sodium: 0.0,
-        sulfur: 0.0,
-        zinc: 0.0
+      minerals: %Minerals{
+        calcium: {nil, :none},
+        chloride: {nil, :none},
+        chromium: {nil, :none},
+        copper: {nil, :none},
+        fluoride: {nil, :none},
+        iodide: {nil, :none},
+        iodine: {nil, :none},
+        iron: {nil, :none},
+        magnesium: {nil, :none},
+        manganese: {nil, :none},
+        molybdenum: {nil, :none},
+        phosphorus: {nil, :none},
+        potassium: {nil, :none},
+        selenium: {nil, :none},
+        sodium: {nil, :none},
+        sulfur: {nil, :none},
+        zinc: {nil, :none}
       },
       name: "Potato",
       note: "",
       origin: [],
       produced: [],
       producer: "X Farmer",
-      proteins: 4.0,
-      salt: 0.0,
-      vitamins: %ExKcal.Vitamins{
-        choline: 0.0,
-        vitamin_a: 0.0,
-        vitamin_b1: 0.0,
-        vitamin_b12: 0.0,
-        vitamin_b2: 0.0,
-        vitamin_b3: 0.0,
-        vitamin_b4: 0.0,
-        vitamin_b6: 0.0,
-        vitamin_b9: 0.0,
-        vitamin_c: 0.0,
-        vitamin_d: 0.0,
-        vitamin_e: 0.0,
-        vitamin_k: 0.0
+      proteins: {2.0, :g},
+      salt: {nil, :none},
+      vitamins: %Vitamins{
+        choline: {nil, :none},
+        vitamin_a: {nil, :none},
+        vitamin_b1: {nil, :none},
+        vitamin_b12: {nil, :none},
+        vitamin_b2: {nil, :none},
+        vitamin_b3: {nil, :none},
+        vitamin_b4: {nil, :none},
+        vitamin_b6: {nil, :none},
+        vitamin_b9: {nil, :none},
+        vitamin_c: {nil, :none},
+        vitamin_d: {nil, :none},
+        vitamin_e: {nil, :none},
+        vitamin_k: {nil, :none}
       },
-      volume: 0.0,
-      weigth: 200
-    }
+      volume: {nil, :none},
+      weight: {100.0, :g}
+  }
 
     lentil = %Product{
-      kcal: 353,
-      weigth: 100,
-      proteins: 25,
+      weight: {100.0, :g},
+      proteins: {25.0, :g},
       carbs: %Carbs{
-        total: 75.7,
-        other: 63,
-        sugars: 2,
-        dietary_fiber: 10.7
+        total: {75.7, :g},
+        other: {63.0, :g},
+        sugars: {2.0, :g},
+        dietary_fiber: {10.7, :g}
       },
       fats: %Fats{
-        total: 1,
-        saturated: 0,
-        monounsaturated: 0,
-        polyunsaturated: 0
+        total: {1.0, :g},
+        saturated: {0.0, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.0, :g}
       },
       name: "Lentil",
       brand: "Some Brand",
       producer: "Some producer"
     }
-
     potato = %Product{
       kcal: 76.9,
-      weigth: 100,
-      proteins: 2,
+      weight: {100.0, :g},
+      proteins: {2.0, :g},
       carbs: %Carbs{
-        total: 17,
-        other: 0,
-        sugars: 0.78,
-        dietary_fiber: 2.2
+        total: {17.0, :g},
+        other: {0.0, :g},
+        sugars: {0.78, :g},
+        dietary_fiber: {2.2, :g}
       },
       fats: %Fats{
-        total: 0.09,
-        saturated: 0.03,
-        monounsaturated: 0,
-        polyunsaturated: 0.04
+        total: {0.09, :g},
+        saturated: {0.03, :g},
+        monounsaturated: {0.0, :g},
+        polyunsaturated: {0.04, :g}
       },
       name: "Potato",
       brand: "X Potato",
       producer: "X Farmer"
     }
 
+
     test_products = %Products{map: %{test_lentil => nil, test_potato => nil}}
     products = Products.new()
-    {:ok, products} = Products.add(products, Calc.adjust_by_weigth(lentil, 45))
-    {:ok, products} = Products.add(products, Calc.adjust_by_weigth(potato, 200))
+    {:ok, products} = Products.add(products, Calc.adjust_by_weight(lentil, 45))
+    {:ok, products} = Products.add(products, Calc.adjust_by_weight(potato, 200))
     assert test_products == products
-    #assert true === Map.equal?(test_products, products)
+    assert true === Map.equal?(test_products, products)
   end
 
   test "Check ExKcal.Calc.multiplier()" do

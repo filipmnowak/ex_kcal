@@ -1,4 +1,23 @@
 defmodule ExKcal.Units do
+  @moduledoc """
+  Various unit-related information, functions etc.
+  """
+
+  # TODO(fmn): can/should we import a type instead?
+  defmacro __using__(_opts) do
+    quote do
+      # TODO(fmn) there should be a better way and/or a name. For reason I don't know, there is no non_neg_float(). Also, seems
+      # like there are no `float` literals for `@type` spec?
+      @typedoc """
+      Amount of substance and unit it is represented in.
+      """
+      @type weight :: {float(), :kg | :g | :mg | :μg} | {nil, :none}
+      @type volume :: {float(), :l | :dl | :ml} | {nil, :none}
+    end
+  end
+
+  @doc false
+  @spec prefixes() :: list({String.t(), String.t(), number()})
   def prefixes() do
     [
       {"yotta", "Y", 1000000000000000000000000},

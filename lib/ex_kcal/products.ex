@@ -38,15 +38,15 @@ defmodule ExKcal.Products do
   @spec get(t(), String.t()) :: {:ok, Product.t()} | {:not_found, nil}
   def get(products, name) when is_struct(products, Products) and is_bitstring(name) do
     product = products.map
-    |> Map.to_list()
+    |> Map.keys()
     |> Enum.find(
-      fn {p, _} ->
+      fn p ->
         p.name == name
       end
     )
     case is_nil(product) do
       true -> {:not_found, nil}
-      false -> {:ok, elem(product, 0)}
+      false -> {:ok, product}
     end
   end
 

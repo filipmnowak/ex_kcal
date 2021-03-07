@@ -1,43 +1,52 @@
 defmodule ExKcal.Minerals do
+  @moduledoc """
+  Minerals and microelements split into subcategories.
+  """
+
+  use ExKcal.Units
 
   defstruct(
-    calcium: 0,
-    chloride: 0,
-    chromium: 0,
-    copper: 0,
-    fluoride: 0,
-    iodine: 0,
-    iodide: 0,
-    iron: 0,
-    magnesium: 0,
-    manganese: 0,
-    molybdenum: 0,
-    phosphorus: 0,
-    potassium: 0,
-    selenium: 0,
-    sodium: 0,
-    sulfur: 0,
-    zinc: 0
+    calcium: {nil, :none},
+    chloride: {nil, :none},
+    chromium: {nil, :none},
+    copper: {nil, :none},
+    fluoride: {nil, :none},
+    iodine: {nil, :none},
+    iodide: {nil, :none},
+    iron: {nil, :none},
+    magnesium: {nil, :none},
+    manganese: {nil, :none},
+    molybdenum: {nil, :none},
+    phosphorus: {nil, :none},
+    potassium: {nil, :none},
+    selenium: {nil, :none},
+    sodium: {nil, :none},
+    sulfur: {nil, :none},
+    zinc: {nil, :none}
   )
 
+  @typedoc """
+  Common minerals and microelements.
+  """
   @type t :: %__MODULE__{
-    calcium: non_neg_integer(),
-    chloride: non_neg_integer(),
-    chromium: non_neg_integer(),
-    copper: non_neg_integer(),
-    fluoride: non_neg_integer(),
-    iodine: non_neg_integer(),
-    iodide: non_neg_integer(),
-    iron: non_neg_integer(),
-    magnesium: non_neg_integer(),
-    manganese: non_neg_integer(),
-    molybdenum: non_neg_integer(),
-    phosphorus: non_neg_integer(),
-    potassium: non_neg_integer(),
-    selenium: non_neg_integer(),
-    sodium: non_neg_integer(),
-    sulfur: non_neg_integer(),
-    zinc: non_neg_integer()
+    calcium: weight(),
+    chloride: weight(),
+    chromium: weight(),
+    copper: weight(),
+    fluoride: weight(),
+    iodine: weight(),
+    iodide: weight(),
+    iron: weight(),
+    magnesium: weight(),
+    manganese: weight(),
+    molybdenum: weight(),
+    phosphorus: weight(),
+    potassium: weight(),
+    selenium: weight(),
+    sodium: weight(),
+    sulfur: weight(),
+    zinc: weight()
   }
+
 
 end

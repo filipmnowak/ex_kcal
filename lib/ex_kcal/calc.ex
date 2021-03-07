@@ -1,18 +1,22 @@
 defmodule ExKcal.Calc do
+  @moduledoc """
+  Provides functions to handle some of the operations related to weight manipulation on the `ExKcal.Product`s.
+  """
 
-  defguard is_non_negative_number(value) when is_number(value) and value >= 0
+  import ExKcal.Guards
 
-  def adjust_by_weigth(value, new_weigth, current_weigth \\ nil) do
+  # TODO(fmn): I don't even know how it does anymore: review and improve.
+  def adjust_by_weight(value, new_weight, current_weight \\ nil) do
     Enum.reduce(
       Enum.map(
         Map.keys(value)
         |> List.delete(:__struct__)
         |> Enum.filter(&(is_number(Map.get(value, &1)) or is_struct(Map.get(value, &1)))),
         fn k ->
-          if k == :weigth do
-            [k, new_weigth]
+          if k == :weight do
+            [k, new_weight]
           else
-            [k, update_value(Map.get(value, k), Map.get_lazy(value, :weigth, fn -> current_weigth end), new_weigth)]
+            [k, update_value(Map.get(value, k), Map.get_lazy(value, :weight, fn -> current_weight end), new_weight)]
           end
         end
       ),
@@ -21,7 +25,7 @@ defmodule ExKcal.Calc do
     )
   end
 
-  def multiplier(divident, divisor) when is_non_negative_number(divident) and is_non_negative_number(divisor) do
+  def multiplier({divident, _unit}, divisor) when is_non_neg_number(divident) and is_non_neg_number(divisor) do
     1/(divident/divisor)
   end
 
@@ -29,12 +33,12 @@ defmodule ExKcal.Calc do
     {:err, :bad_args}
   end
 
-  def update_value(value, weigth, new_weigth) when is_struct(value) do
-    adjust_by_weigth(value, new_weigth, weigth)
+  def update_value(value, weight, new_weight) when is_struct(value) do
+    adjust_by_weight(value, new_weight, weight)
   end
 
-  def update_value(value, weigth, new_weigth) when is_number(value) do
-    value * multiplier(weigth, new_weigth)
+  def update_value(value, weight, new_weight) when is_number(value) do
+    value * multiplier(weight, new_weight)
   end
 
   def update_value([k, value], acc) do

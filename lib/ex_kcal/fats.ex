@@ -1,12 +1,20 @@
 defmodule ExKcal.Fats do
+  @moduledoc """
+  Fats split into subcategories.
+  """
+
+  use ExKcal.Units
 
   defstruct(
-    total: 0,
-    saturated: 0,
-    monounsaturated: 0,
-    polyunsaturated: 0
+    total: {nil, :none},
+    saturated: {nil, :none},
+    monounsaturated: {nil, :none},
+    polyunsaturated: {nil, :none}
   )
 
-  @type t :: %__MODULE__{total: non_neg_integer(), saturated: non_neg_integer(), monounsaturated: non_neg_integer(), polyunsaturated: non_neg_integer()}
+  @typedoc """
+  Amounts of different fat types.
+  """
+  @type t :: %__MODULE__{total: weight(), saturated: weight(), monounsaturated: weight(), polyunsaturated: weight()}
 
 end

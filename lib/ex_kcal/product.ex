@@ -1,23 +1,24 @@
 defmodule ExKcal.Product do
 
+  use ExKcal.Units
+
   alias ExKcal.Carbs
   alias ExKcal.Fats
   alias ExKcal.Vitamins
   alias ExKcal.Minerals
   alias ExKcal.Alcohols
-  alias ExKcal.Product
 
   defstruct(
-    kcal: 0,
-    weigth: 0,
-    volume: 0,
-    proteins: 0,
+    kcal: 0.0,
+    weight: {nil, :none},
+    volume: {nil, :none},
+    proteins: {nil, :none},
     carbs: %Carbs{},
     fats: %Fats{},
     vitamins: %Vitamins{},
     minerals: %Minerals{},
     alcohols: %Alcohols{},
-    salt: 0,
+    salt: {nil, :none},
     name: "",
     description: "",
     note: "",
@@ -27,17 +28,20 @@ defmodule ExKcal.Product do
     origin: []
   )
 
+  @typedoc """
+  Struct representing single product. Base unit for `ExKcal.Products`.
+  """
   @type t :: %__MODULE__{
-    kcal: integer(),
-    weigth: non_neg_integer(),
-    volume: non_neg_integer(),
-    proteins: non_neg_integer(),
+    kcal: float(),
+    weight: weight(),
+    volume: volume(),
+    proteins: weight(),
     carbs: Carbs.t(),
     fats: Fats.t(),
     vitamins: Vitamins.t(),
     minerals: Minerals.t(),
     alcohols: Alcohols.t(),
-    salt: non_neg_integer(),
+    salt: weight(),
     name: String.t(),
     description: String.t(),
     note: String.t(),

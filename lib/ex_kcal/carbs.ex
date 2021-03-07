@@ -1,19 +1,27 @@
 defmodule ExKcal.Carbs do
+  @moduledoc """
+  Carbohydrates split into subcategories.
+  """
+
+  use ExKcal.Units
 
   defstruct(
-    total: 0,
-    starch: 0,
-    other: 0,
-    sugars: 0,
-    dietary_fiber: 0
+    total: {nil, :none},
+    starch: {nil, :none},
+    other: {nil, :none},
+    sugars: {nil, :none},
+    dietary_fiber: {nil, :none}
   )
 
+  @typedoc """
+  Different types of carbs.
+  """
   @type t :: %__MODULE__{
-    total: non_neg_integer(),
-    starch: non_neg_integer(),
-    other: non_neg_integer(),
-    sugars: non_neg_integer(),
-    dietary_fiber: non_neg_integer
+    total: weight(),
+    starch: weight(),
+    other: weight(),
+    sugars: weight(),
+    dietary_fiber: weight()
   }
 
 end

@@ -1,11 +1,19 @@
 defmodule ExKcal.Alcohols do
+  @moduledoc """
+  Describes various alcohols common and beverages and food.
+  """
+
+  use ExKcal.Units
 
   defstruct(
-    total: 0,
-    ethanol: 0,
-    other: 0
+    total: {nil, :none},
+    ethanol: {nil, :none},
+    other: {nil, :none}
   )
 
-  @type t :: %__MODULE__{total: non_neg_integer(), ethanol: non_neg_integer(), other: non_neg_integer()}
+  @typedoc """
+  Common alcohols expressed in `#{__MODULE__}.weight()`.
+  """
+  @type t :: %__MODULE__{total: weight(), ethanol: weight(), other: weight()}
 
 end

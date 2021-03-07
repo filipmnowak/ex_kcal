@@ -9,24 +9,24 @@ defmodule ExKcal.Data do
   @products [
     %Product{
       kcal: 385,
-      weigth: 100,
-      volume: 0,
-      proteins: 15,
+      weight: {100.0, :g},
+      volume: {nil, :none},
+      proteins: {15.0, :g},
       carbs: %Carbs{
-        total: 50,
-        dietary_fiber: 13},
+        total: {50.0, :g},
+        dietary_fiber: {13.0, :g}
+      },
       fats: %Fats{
-        total: 11,
-        saturated: 1.8
+        total: {11.0, :g},
+        saturated: {1.8, :g}
       },
-      vitamins: %Vitamins{
-      },
+      vitamins: %Vitamins{},
       minerals: %Minerals{
-        iron: 5.2,
-        magnesium: 176
+        iron: {5.2, :mg},
+        magnesium: {176.0, :mg}
       },
       alcohols: %Alcohols{},
-      salt: 0.18,
+      salt: {0.18, :g},
       name: "Schweizer Müesli",
       description: "",
       note: "",
@@ -36,25 +36,25 @@ defmodule ExKcal.Data do
       origin: [:switzerland]
     },
     %Product{
-      kcal: 615,
-      weigth: 100,
-      volume: 0,
-      proteins: 21,
+      kcal: 610,
+      weight: {100.0, :g},
+      volume: {nil, :none},
+      proteins: {18.0, :g},
       carbs: %Carbs{
-        total: 12,
-        sugars: 2.3},
+        total: {12.0, :g},
+        sugars: {10.0, :g}
+      },
       fats: %Fats{
-        total: 52,
-        saturated: 6.1
+        total: {52.0, :g},
+        saturated: {6.1, :g}
       },
-      vitamins: %Vitamins{
-      },
+      vitamins: %Vitamins{},
       minerals: %Minerals{
-        iron: 5.2,
-        magnesium: 176
+        iron: {5.2, :mg},
+        magnesium: {176.0, :mg}
       },
       alcohols: %Alcohols{},
-      salt: 0.02,
+      salt: {0.03, :g},
       name: "Grüne Pistazienkerne",
       description: "pistachio nuts green, shelled",
       note: "",
@@ -65,26 +65,26 @@ defmodule ExKcal.Data do
     },
     %Product{
       kcal: 562,
-      weigth: 100,
-      volume: 0,
-      proteins: 22,
+      weight: {100.0, :g},
+      volume: {nil, :none},
+      proteins: {22.0, :g},
       carbs: %Carbs{
-        total: 5.9,
-        sugars: 2.6,
-        dietary_fiber: 18},
+        total: {5.9, :g},
+        sugars: {2.6, :g},
+        dietary_fiber: {18.0, :g}
+      },
       fats: %Fats{
-        total: 46,
-        saturated: 4.6
+        total: {46.0, :g},
+        saturated: {4.6, :g}
       },
-      vitamins: %Vitamins{
-      },
+      vitamins: %Vitamins{},
       minerals: %Minerals{
-        iron: 6.9,
-        magnesium: 356,
-        zinc: 6.3
+        iron: {6.9, :mg},
+        magnesium: {356.0, :mg},
+        zinc: {6.3, :mg}
       },
       alcohols: %Alcohols{},
-      salt: 0.03,
+      salt: {0.03, :g},
       name: "Kernenmix",
       description: "Melange De Graines",
       note: "nutrition data found at https://www.coop.ch/de/maert/suesses-snacks/snacks/naturaplan-bio-campiuns-kernen-mix/p/6096991#tab=product-nutritions. from same page PDF with slightly different info is linked: https://www.coop.ch/content/dam/Naturaplan_2018/Gut/bio-campiuns/naehrwerte-kernenmix-naturaplan-bio-campiuns.pdf.",
@@ -95,20 +95,21 @@ defmodule ExKcal.Data do
     },
     %Product{
       kcal: 683,
-      weigth: 100,
-      volume: 0,
-      proteins: 1.5,
+      weight: {100.0, :g},
+      volume: {nil, :none},
+      proteins: {1.5, :g},
       carbs: %Carbs{
-        total: 2.5,
-        sugars: 1},
+        total: {2.5, :g},
+        sugars: {1.0, :g}
+      },
       fats: %Fats{
-        total: 74,
-        saturated: 8
+        total: {74.0, :g},
+        saturated: {8.0, :g}
       },
       vitamins: %Vitamins{},
       minerals: %Minerals{},
       alcohols: %Alcohols{},
-      salt: 1.4,
+      salt: {1.4, :g},
       name: "Mayonnaise Suisse",
       description: "Schweizer Mayonnaise",
       note: "",
@@ -119,20 +120,20 @@ defmodule ExKcal.Data do
     },
     %Product{
       kcal: 236,
-      weigth: 100,
-      volume: 0,
-      proteins: 17.5,
+      weight: {100.0, :g},
+      volume: {nil, :none},
+      proteins: {17.5, :g},
       carbs: %Carbs{},
       fats: %Fats{
-        total: 18.4,
-        saturated: 4.6,
-        monounsaturated: 9.3,
-        polyunsaturated: 4.5
+        total: {18.4, :g},
+        saturated: {4.6, :g},
+        monounsaturated: {9.3, :g},
+        polyunsaturated: {4.5, :g}
       },
       vitamins: %Vitamins{},
       minerals: %Minerals{},
       alcohols: %Alcohols{},
-      salt: 1.2,
+      salt: {1.2, :g},
       name: "Mackerel Fillets",
       description: "Grilled, Natural",
       note: "",
@@ -143,22 +144,22 @@ defmodule ExKcal.Data do
     },
     %Product{
       kcal: 189,
-      weigth: 100,
-      volume: 0,
-      proteins: 1.2,
+      weight: {100.0, :g},
+      volume: {nil, :none},
+      proteins: {1.2, :g},
       carbs: %Carbs{
-        total: 2.2,
-        sugars: 0.4,
-        dietary_fiber: 2
+        total: {2.2, :g},
+        sugars: {0.4, :g},
+        dietary_fiber: {2.0, :g}
       },
       fats: %Fats{
-        total: 19,
-        saturated: 2.7,
+        total: {19.0, :g},
+        saturated: {2.7, :g},
       },
       vitamins: %Vitamins{},
       minerals: %Minerals{},
       alcohols: %Alcohols{},
-      salt: 2.3,
+      salt: {2.3, :g},
       name: "Grüne Oliven Entsteint",
       description: "Pitted Green Olives In Brine",
       note: "",
