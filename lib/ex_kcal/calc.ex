@@ -25,7 +25,7 @@ defmodule ExKcal.Calc do
     )
   end
 
-  def multiplier({divident, _unit}, divisor) when is_non_neg_number(divident) and is_non_neg_number(divisor) do
+  def multiplier(divident, divisor) when is_non_neg_number(divident) and is_non_neg_number(divisor) do
     1/(divident/divisor)
   end
 
@@ -37,7 +37,7 @@ defmodule ExKcal.Calc do
     adjust_by_weight(value, new_weight, weight)
   end
 
-  def update_value(value, weight, new_weight) when is_number(value) do
+  def update_value(value, {weight, _unit}, new_weight) when is_number(value) do
     value * multiplier(weight, new_weight)
   end
 

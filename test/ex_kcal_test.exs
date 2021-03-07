@@ -5,9 +5,6 @@ defmodule ExKcalTest do
 
   alias ExKcal.Products
   alias ExKcal.Product
-  alias ExKcal.Minerals
-  alias ExKcal.Alcohols
-  alias ExKcal.Vitamins
   alias ExKcal.Carbs
   alias ExKcal.Fats
   alias ExKcal.Calc
@@ -296,19 +293,13 @@ defmodule ExKcalTest do
     }
     # base values multiplied by 2
     test_potato =  %Product{
-      alcohols: %Alcohols{
-      ethanol: {nil, :none},
-      other: {nil, :none},
-      total: {nil, :none}
-    },
       brand: "X Potato",
       carbs: %Carbs{
-      dietary_fiber: {2.2, :g},
-      other: {0.0, :g},
-      starch: {nil, :none},
-      sugars: {0.78, :g},
-      total: {17.0, :g}
-    },
+        dietary_fiber: {2.2, :g},
+        other: {0.0, :g},
+        sugars: {0.78, :g},
+        total: {17.0, :g}
+      },
       description: "",
       fats: %Fats{
         monounsaturated: {0.0, :g},
@@ -317,48 +308,9 @@ defmodule ExKcalTest do
         total: {0.09, :g}
       },
       kcal: 153.8,
-      minerals: %Minerals{
-        calcium: {nil, :none},
-        chloride: {nil, :none},
-        chromium: {nil, :none},
-        copper: {nil, :none},
-        fluoride: {nil, :none},
-        iodide: {nil, :none},
-        iodine: {nil, :none},
-        iron: {nil, :none},
-        magnesium: {nil, :none},
-        manganese: {nil, :none},
-        molybdenum: {nil, :none},
-        phosphorus: {nil, :none},
-        potassium: {nil, :none},
-        selenium: {nil, :none},
-        sodium: {nil, :none},
-        sulfur: {nil, :none},
-        zinc: {nil, :none}
-      },
       name: "Potato",
-      note: "",
-      origin: [],
-      produced: [],
       producer: "X Farmer",
       proteins: {2.0, :g},
-      salt: {nil, :none},
-      vitamins: %Vitamins{
-        choline: {nil, :none},
-        vitamin_a: {nil, :none},
-        vitamin_b1: {nil, :none},
-        vitamin_b12: {nil, :none},
-        vitamin_b2: {nil, :none},
-        vitamin_b3: {nil, :none},
-        vitamin_b4: {nil, :none},
-        vitamin_b6: {nil, :none},
-        vitamin_b9: {nil, :none},
-        vitamin_c: {nil, :none},
-        vitamin_d: {nil, :none},
-        vitamin_e: {nil, :none},
-        vitamin_k: {nil, :none}
-      },
-      volume: {nil, :none},
       weight: {100.0, :g}
   }
 
