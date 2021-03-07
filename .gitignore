@@ -22,3 +22,5 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 kcal_count-*.tar
 
+# Ignore Vim swao files.
+*.swp
