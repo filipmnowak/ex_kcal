@@ -27,7 +27,7 @@ defmodule ExKcal.Products do
   @doc """
   Add `Product` to `Products`.
   """
-  @spec add(t(), %Product{}) :: {:ok, t()} | {:noop, :already_member}
+  @spec add(t(), Product.t()) :: {:ok, t()} | {:noop, :already_member}
   def add(products, product) when is_struct(products, Products) and is_struct(product, Product) do
     Map.has_key?(products.map, product) && {:noop, :already_member} || {:ok, Map.put(products, :map, Map.put(products.map, product, nil))}
   end
