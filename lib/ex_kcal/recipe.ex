@@ -35,14 +35,10 @@ defmodule ExKcal.Recipe do
   @doc """
   Delete instance of `ExKcal.Recipe.Step` from `ExKcal.Recipe` by its index.
   """
-  @spec delete_step(t(), non_neg_integer()) :: t() | {:err, :bad_args}
+  @spec delete_step(t(), non_neg_integer()) :: t()
   def delete_step(recipe, step_index)
     when is_struct(recipe, Recipe) and is_non_neg_number(step_index) and length(recipe.steps) > step_index do
     %Recipe{recipe | steps: List.delete_at(recipe.steps, step_index)}
-  end
-
-  def delete_step(_, _) do
-    {:err, :bad_args}
   end
 
 end
