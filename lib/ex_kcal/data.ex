@@ -8,7 +8,7 @@ defmodule ExKcal.Data do
 
   @products [
     %Product{
-      kcal: 385,
+      kcal: 385.0,
       weight: {100.0, :g},
       volume: {nil, :none},
       proteins: {15.0, :g},
@@ -36,7 +36,7 @@ defmodule ExKcal.Data do
       origin: [:switzerland]
     },
     %Product{
-      kcal: 610,
+      kcal: 610.0,
       weight: {100.0, :g},
       volume: {nil, :none},
       proteins: {18.0, :g},
@@ -64,7 +64,7 @@ defmodule ExKcal.Data do
       origin: [:iran]
     },
     %Product{
-      kcal: 562,
+      kcal: 562.0,
       weight: {100.0, :g},
       volume: {nil, :none},
       proteins: {22.0, :g},
@@ -94,7 +94,7 @@ defmodule ExKcal.Data do
       origin: [:switzerland]
     },
     %Product{
-      kcal: 683,
+      kcal: 683.0,
       weight: {100.0, :g},
       volume: {nil, :none},
       proteins: {1.5, :g},
@@ -119,7 +119,7 @@ defmodule ExKcal.Data do
       origin: [:switzerland]
     },
     %Product{
-      kcal: 236,
+      kcal: 236.0,
       weight: {100.0, :g},
       volume: {nil, :none},
       proteins: {17.5, :g},
@@ -143,7 +143,7 @@ defmodule ExKcal.Data do
       origin: []
     },
     %Product{
-      kcal: 189,
+      kcal: 189.0,
       weight: {100.0, :g},
       volume: {nil, :none},
       proteins: {1.2, :g},

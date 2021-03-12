@@ -5,18 +5,16 @@ defmodule ExKcal.Calc do
 
   import ExKcal.Guards
 
-  # TODO(fmn): I don't even know how it does anymore: review and improve.
   def adjust_by_weight(value, new_weight, current_weight \\ nil) do
     Enum.reduce(
       Enum.map(
         Map.keys(value)
-        |> List.delete(:__struct__)
-        |> Enum.filter(&(is_number(Map.get(value, &1)) or is_struct(Map.get(value, &1)))),
+        |> List.delete(:__struct__),
         fn k ->
           if k == :weight do
-            [k, new_weight]
+            {k, {new_weight, :g}}
           else
-            [k, update_value(Map.get(value, k), Map.get_lazy(value, :weight, fn -> current_weight end), new_weight)]
+            {k, adjust_value(Map.get(value, k), Map.get_lazy(value, :weight, fn -> current_weight end), new_weight)}
           end
         end
       ),
@@ -29,19 +27,27 @@ defmodule ExKcal.Calc do
     1/(divident/divisor)
   end
 
-  def multiplier(_divident, _divisor) do
-    {:err, :bad_args}
-  end
-
-  def update_value(value, weight, new_weight) when is_struct(value) do
+  def adjust_value(value, weight, new_weight) when is_struct(value) do
     adjust_by_weight(value, new_weight, weight)
   end
 
-  def update_value(value, {weight, _unit}, new_weight) when is_number(value) do
+  def adjust_value({nil, :none}, _, _) do
+    {nil, :none}
+  end
+
+  def adjust_value({value, unit}, {weight, _}, new_weight) do
+    {value * multiplier(weight, new_weight), unit}
+  end
+
+  def adjust_value(value, {weight, _}, new_weight) when is_number(value) do
     value * multiplier(weight, new_weight)
   end
 
-  def update_value([k, value], acc) do
+  def adjust_value(value, _, _) when is_bitstring(value) or is_list(value) do
+    value
+  end
+
+  def update_value({k, value}, acc) do
     %{acc | k => value}
   end
 

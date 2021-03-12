@@ -8,26 +8,6 @@ defmodule ExKcal.Product do
   alias ExKcal.Minerals
   alias ExKcal.Alcohols
 
-  defstruct(
-    kcal: 0.0,
-    weight: {nil, :none},
-    volume: {nil, :none},
-    proteins: {nil, :none},
-    carbs: %Carbs{},
-    fats: %Fats{},
-    vitamins: %Vitamins{},
-    minerals: %Minerals{},
-    alcohols: %Alcohols{},
-    salt: {nil, :none},
-    name: "",
-    description: "",
-    note: "",
-    brand: "",
-    producer: "",
-    produced: [],
-    origin: []
-  )
-
   @typedoc """
   Struct representing single product. Base unit for `ExKcal.Products`.
   """
@@ -50,5 +30,24 @@ defmodule ExKcal.Product do
     produced: list(String.t()),
     origin: list(String.t())
   }
+  defstruct(
+    kcal: 0.0,
+    weight: {nil, :none},
+    volume: {nil, :none},
+    proteins: {nil, :none},
+    carbs: %Carbs{},
+    fats: %Fats{},
+    vitamins: %Vitamins{},
+    minerals: %Minerals{},
+    alcohols: %Alcohols{},
+    salt: {nil, :none},
+    name: "",
+    description: "",
+    note: "",
+    brand: "",
+    producer: "",
+    produced: [],
+    origin: []
+  )
 
 end
