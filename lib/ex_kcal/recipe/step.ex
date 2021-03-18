@@ -15,7 +15,12 @@ defmodule ExKcal.Recipe.Step do
     notes: ""
   )
 
-  @type t :: %__MODULE__{products: Products.t(), time: RecipeTime.t(), instructions: String.t(), notes: String.t()}
+  @type t :: %__MODULE__{
+          products: Products.t(),
+          time: RecipeTime.t(),
+          instructions: String.t(),
+          notes: String.t()
+        }
 
   @doc """
   Construct new `ExKcal.Recipe.Step` instance.
@@ -24,5 +29,4 @@ defmodule ExKcal.Recipe.Step do
   def new(instructions, time) when is_bitstring(instructions) and is_struct(time, RecipeTime) do
     %Step{instructions: instructions, time: time}
   end
-
 end

@@ -1,5 +1,4 @@
 defmodule ExKcal.ProductsTest do
-
   use ExUnit.Case, async: true
   doctest ExKcal.Products
 
@@ -166,6 +165,7 @@ defmodule ExKcal.ProductsTest do
       brand: "Some Brand",
       producer: "Some producer"
     }
+
     test_potato = %Product{
       kcal: 76.9,
       weight: {100.0, :g},
@@ -213,6 +213,7 @@ defmodule ExKcal.ProductsTest do
       brand: "Some Brand",
       producer: "Some producer"
     }
+
     test_potato = %Product{
       kcal: 76.9,
       weight: {100.0, :g},
@@ -233,6 +234,7 @@ defmodule ExKcal.ProductsTest do
       brand: "X Potato",
       producer: "X Farmer"
     }
+
     test_something = %Product{
       name: "something",
       brand: "something",
@@ -268,6 +270,7 @@ defmodule ExKcal.ProductsTest do
       brand: "Some Brand",
       producer: "Some producer"
     }
+
     test_potato = %Product{
       kcal: 76.9,
       weight: {100.0, :g},

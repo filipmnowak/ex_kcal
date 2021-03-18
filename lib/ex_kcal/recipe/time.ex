@@ -5,11 +5,14 @@ defmodule ExKcal.Recipe.Time do
   `seconds`.
   """
 
-  defstruct(hours: 0, minutes: 0,  seconds: 0)
+  defstruct(hours: 0, minutes: 0, seconds: 0)
 
   @typedoc """
   Amount of time is sum of all of the fields.
   """
-  @type t :: %__MODULE__{hours: Calendar.hour(), minutes: Calendar.minute(), seconds: Calendar.second()}
-
+  @type t :: %__MODULE__{
+          hours: Calendar.hour(),
+          minutes: Calendar.minute(),
+          seconds: Calendar.second()
+        }
 end

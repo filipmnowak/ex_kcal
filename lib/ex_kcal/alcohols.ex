@@ -15,5 +15,4 @@ defmodule ExKcal.Alcohols do
   Common alcohols expressed in `#{__MODULE__}.weight()`.
   """
   @type t :: %__MODULE__{total: weight(), ethanol: weight(), other: weight()}
-
 end

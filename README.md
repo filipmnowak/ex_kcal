@@ -1,6 +1,8 @@
 # ExKcal
 
-**TODO: Add description**
+## Notes
+
+This is exploratory, toy project, strange things in the code, too much emphasis on types etc.
 
 ## Installation
 
@@ -10,7 +12,7 @@ by adding `ex_kcal` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_kcal, "~> 0.1.0"}
+    {:ex_kcal, "~> 0.0.4"}
   ]
 end
 ```

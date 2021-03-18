@@ -14,17 +14,23 @@ defmodule ExKcal.Calc do
           if k == :weight do
             {k, {new_weight, :g}}
           else
-            {k, adjust_value(Map.get(value, k), Map.get_lazy(value, :weight, fn -> current_weight end), new_weight)}
+            {k,
+             adjust_value(
+               Map.get(value, k),
+               Map.get_lazy(value, :weight, fn -> current_weight end),
+               new_weight
+             )}
           end
         end
       ),
       value,
-      &(update_value(&1, &2))
+      &update_value(&1, &2)
     )
   end
 
-  def multiplier(divident, divisor) when is_non_neg_number(divident) and is_non_neg_number(divisor) do
-    1/(divident/divisor)
+  def multiplier(divident, divisor)
+      when is_non_neg_number(divident) and is_non_neg_number(divisor) do
+    1 / (divident / divisor)
   end
 
   def adjust_value(value, weight, new_weight) when is_struct(value) do
@@ -50,5 +56,4 @@ defmodule ExKcal.Calc do
   def update_value({k, value}, acc) do
     %{acc | k => value}
   end
-
 end

@@ -3,10 +3,12 @@ defmodule ExKcal.Recipe do
   `ExKcal.Recipe` splits preparation task into the `list` of steps.
   """
 
+  use ExKcal.Units
   import ExKcal.Guards
 
   alias ExKcal.Recipe
   alias ExKcal.Recipe.Step, as: RecipeStep
+  alias ExKcal.Product
 
   @enforce_keys [:steps]
   defstruct(steps: [])
@@ -37,8 +39,34 @@ defmodule ExKcal.Recipe do
   """
   @spec delete_step(t(), non_neg_integer()) :: t()
   def delete_step(recipe, step_index)
-    when is_struct(recipe, Recipe) and is_non_neg_number(step_index) and length(recipe.steps) > step_index do
+      when is_struct(recipe, Recipe) and is_non_neg_number(step_index) and
+             length(recipe.steps) > step_index do
     %Recipe{recipe | steps: List.delete_at(recipe.steps, step_index)}
   end
 
+  @doc """
+  Calculate total nutritional value of the `ExKcal.Products` used in the `ExKcal.Recipe`.
+  It returns kind of a special `ExKcal.Product` instance containing sum of all of the relevant fields, from all of the used
+  Products.
+  ## Notes
+  - Function doesn't take units into account.
+  - It won't recalculate `total` fields, it will sum their values.
+  """
+  @spec total_nutrition(t()) :: %Product{}
+  def total_nutrition(recipe) do
+    Enum.reduce(
+      recipe.steps
+      |> Enum.map(
+        fn step ->
+          step.products.map
+          |> Map.keys()
+        end
+      )
+      |> List.flatten(),
+      %Product{},
+      fn p, acc ->
+        Product.sum(acc, p)
+      end
+    )
+  end
 end

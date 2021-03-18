@@ -17,11 +17,10 @@ defmodule ExKcal.Carbs do
   Different types of carbs.
   """
   @type t :: %__MODULE__{
-    total: weight(),
-    starch: weight(),
-    other: weight(),
-    sugars: weight(),
-    dietary_fiber: weight()
-  }
-
+          total: weight(),
+          starch: weight(),
+          other: weight(),
+          sugars: weight(),
+          dietary_fiber: weight()
+        }
 end

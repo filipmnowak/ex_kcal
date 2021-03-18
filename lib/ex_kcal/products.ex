@@ -1,5 +1,4 @@
 defmodule ExKcal.Products do
-
   @moduledoc """
   Main purpose of the module is to represent set of products and primitives required to manipulate it.
   It's analog of `MapSet`, but `MapSet` leaves us in uneasy situation, as its implementation details are private (opaque type)
@@ -29,7 +28,8 @@ defmodule ExKcal.Products do
   """
   @spec add(t(), Product.t()) :: {:ok, t()} | {:noop, :already_member}
   def add(products, product) when is_struct(products, Products) and is_struct(product, Product) do
-    Map.has_key?(products.map, product) && {:noop, :already_member} || {:ok, Map.put(products, :map, Map.put(products.map, product, nil))}
+    (Map.has_key?(products.map, product) && {:noop, :already_member}) ||
+      {:ok, Map.put(products, :map, Map.put(products.map, product, nil))}
   end
 
   @doc """
@@ -37,13 +37,13 @@ defmodule ExKcal.Products do
   """
   @spec get(t(), String.t()) :: {:ok, Product.t()} | {:not_found, nil}
   def get(products, name) when is_struct(products, Products) and is_bitstring(name) do
-    product = products.map
-    |> Map.keys()
-    |> Enum.find(
-      fn p ->
+    product =
+      products.map
+      |> Map.keys()
+      |> Enum.find(fn p ->
         p.name == name
-      end
-    )
+      end)
+
     case is_nil(product) do
       true -> {:not_found, nil}
       false -> {:ok, product}
@@ -58,22 +58,22 @@ defmodule ExKcal.Products do
   """
   @spec find(Regex.t(), t(), list()) :: {:ok, list()} | {:not_found, nil}
   def find(regex, products, fields \\ [:name, :description])
-    when is_struct(regex, Regex) and is_struct(products, Products) and is_list(fields) and length(fields) > 0 do
-      found = products.map
+      when is_struct(regex, Regex) and is_struct(products, Products) and is_list(fields) and
+             length(fields) > 0 do
+    found =
+      products.map
       |> Map.keys()
-      |> Enum.filter(
-        fn p ->
-          Regex.match?(
-            regex,
-            Enum.map(fields, fn f -> Map.get(p, f) end)
-            |> Enum.join(" ")
-          )
-        end
-      )
-      case length(found) > 0 do
-        true -> {:ok, found}
-        false -> {:not_found, nil}
-      end
-  end
+      |> Enum.filter(fn p ->
+        Regex.match?(
+          regex,
+          Enum.map(fields, fn f -> Map.get(p, f) end)
+          |> Enum.join(" ")
+        )
+      end)
 
+    case length(found) > 0 do
+      true -> {:ok, found}
+      false -> {:not_found, nil}
+    end
+  end
 end

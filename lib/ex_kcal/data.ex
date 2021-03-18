@@ -87,7 +87,8 @@ defmodule ExKcal.Data do
       salt: {0.03, :g},
       name: "Kernenmix",
       description: "Melange De Graines",
-      note: "nutrition data found at https://www.coop.ch/de/maert/suesses-snacks/snacks/naturaplan-bio-campiuns-kernen-mix/p/6096991#tab=product-nutritions. from same page PDF with slightly different info is linked: https://www.coop.ch/content/dam/Naturaplan_2018/Gut/bio-campiuns/naehrwerte-kernenmix-naturaplan-bio-campiuns.pdf.",
+      note:
+        "nutrition data found at https://www.coop.ch/de/maert/suesses-snacks/snacks/naturaplan-bio-campiuns-kernen-mix/p/6096991#tab=product-nutritions. from same page PDF with slightly different info is linked: https://www.coop.ch/content/dam/Naturaplan_2018/Gut/bio-campiuns/naehrwerte-kernenmix-naturaplan-bio-campiuns.pdf.",
       brand: "Bio Campiuns",
       producer: "Biofarm Genossenschaft",
       produced: [:switzerland],
@@ -154,7 +155,7 @@ defmodule ExKcal.Data do
       },
       fats: %Fats{
         total: {19.0, :g},
-        saturated: {2.7, :g},
+        saturated: {2.7, :g}
       },
       vitamins: %Vitamins{},
       minerals: %Minerals{},
@@ -167,7 +168,7 @@ defmodule ExKcal.Data do
       producer: "Somia S.A.",
       produced: [:morocco],
       origin: []
-    },
+    }
   ]
 
   def products() do

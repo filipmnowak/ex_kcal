@@ -25,19 +25,18 @@ defmodule ExKcal.Vitamins do
   Varuiys vitamins and related substances.
   """
   @type t :: %__MODULE__{
-    vitamin_a: weight(),
-    vitamin_b1: weight(),
-    vitamin_b2: weight(),
-    vitamin_b3: weight(),
-    vitamin_b4: weight(),
-    vitamin_b6: weight(),
-    vitamin_b12: weight(),
-    vitamin_c: weight(),
-    choline: weight(),
-    vitamin_d: weight(),
-    vitamin_e: weight(),
-    vitamin_b9: weight(),
-    vitamin_k: weight()
-  }
-
+          vitamin_a: weight(),
+          vitamin_b1: weight(),
+          vitamin_b2: weight(),
+          vitamin_b3: weight(),
+          vitamin_b4: weight(),
+          vitamin_b6: weight(),
+          vitamin_b12: weight(),
+          vitamin_c: weight(),
+          choline: weight(),
+          vitamin_d: weight(),
+          vitamin_e: weight(),
+          vitamin_b9: weight(),
+          vitamin_k: weight()
+        }
 end

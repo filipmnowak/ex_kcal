@@ -7,7 +7,7 @@ defmodule ExKcal.MixProject do
       package: package(),
       description: description(),
       app: :ex_kcal,
-      version: "0.0.4",
+      version: "0.0.5",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -25,12 +25,12 @@ defmodule ExKcal.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
-      {:ex_doc, "~> 0.23", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
 
   defp package() do
-        [
+    [
       # These are the default files included in the package
       files: ~w(lib .formatter.exs mix.exs README.md LICENSE.txt),
       licenses: ["AGPL-3.0-or-later"],
@@ -42,4 +42,3 @@ defmodule ExKcal.MixProject do
     "Handle culinary recipes and calculate their nutritional value (pre-alpha / WIP)."
   end
 end
-

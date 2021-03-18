@@ -15,6 +15,10 @@ defmodule ExKcal.Fats do
   @typedoc """
   Amounts of different fat types.
   """
-  @type t :: %__MODULE__{total: weight(), saturated: weight(), monounsaturated: weight(), polyunsaturated: weight()}
-
+  @type t :: %__MODULE__{
+          total: weight(),
+          saturated: weight(),
+          monounsaturated: weight(),
+          polyunsaturated: weight()
+        }
 end
