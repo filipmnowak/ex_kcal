@@ -56,35 +56,31 @@ defmodule ExKcal.Product do
   """
   @spec sum(t(), t()) :: t()
   def sum(item1, item2) do
-    Map.merge(item1, item2, fn k, v1, v2 ->
-      cond do
-        k == :__struct__ ->
-          v1
-
-        is_struct(v1) ->
-          sum(v1, v2)
-
-        is_bitstring(v1) ->
-          ""
-
-        is_list(v1) ->
-          []
-
-        is_float(v1) ->
-          v1 + v2
-
-        {nil, :none} == v2 and {nil, :none} != v1 ->
-          v1
-
-        {nil, :none} == v1 and {nil, :none} != v2 ->
-          v2
-
-        {nil, :none} == v1 and {nil, :none} == v2 ->
-          {nil, :none}
-
-        [{weight1, unit1}, {weight2, _unit2}] = [v1, v2] ->
-          {weight1 + weight2, unit1}
+    Map.merge(
+      item1,
+      item2,
+      fn k, v1, v2 ->
+        cond do
+          k == :__struct__ ->
+            v1
+          is_struct(v1) ->
+            sum(v1, v2)
+          is_bitstring(v1) ->
+            ""
+          is_list(v1) ->
+            []
+          is_float(v1) ->
+            v1 + v2
+          {nil, :none} == v2 and {nil, :none} != v1 ->
+            v1
+          {nil, :none} == v1 and {nil, :none} != v2 ->
+            v2
+          {nil, :none} == v1 and {nil, :none} == v2 ->
+            {nil, :none}
+          [{weight1, unit1}, {weight2, _unit2}] = [v1, v2] ->
+            {weight1 + weight2, unit1}
+        end
       end
-    end)
+    )
   end
 end
