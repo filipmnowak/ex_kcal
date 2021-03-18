@@ -52,7 +52,7 @@ defmodule ExKcal.Product do
   @doc """
   Calculate nutrition of two `ExKcal.Product`s.
   ## Note
-  non-numeric values (excluding structs) are copied without change from `item1`.
+  non-numeric values are set to struct's default.
   """
   @spec sum(t(), t()) :: t()
   def sum(item1, item2) do
