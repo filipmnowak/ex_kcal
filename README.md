@@ -12,7 +12,7 @@ by adding `ex_kcal` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_kcal, "~> 0.0.4"}
+    {:ex_kcal, "~> 0.0.5"}
   ]
 end
 ```
