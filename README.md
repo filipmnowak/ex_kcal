@@ -6,8 +6,8 @@ This is exploratory, toy project, strange things in the code, too much emphasis 
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ex_kcal` to your list of dependencies in `mix.exs`:
+[Available in Hex](https://hex.pm/docs/publish); the package can be installed by adding `ex_kcal`
+to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -36,4 +36,4 @@ recipe = Recipe.add_step(Recipe.new(), step1) |> Recipe.add_step(Recipe.new(), s
 ```
 
 ## Docs
-[https://hexdocs.pm/ex_kcal](https://hexdocs.pm/ex_kcal).
+Check [at Hex](https://hexdocs.pm/ex_kcal).
