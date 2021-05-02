@@ -23,8 +23,8 @@ end
 alias ExKcal.Product
 alias ExKcal.Products
 alias ExKcal.Recipe
-ExKcal.Recipe.Step, as: RecipeStep
-ExKcal.Recipe.Time, as: RecipeTime
+alias ExKcal.Recipe.Step, as: RecipeStep
+alias ExKcal.Recipe.Time, as: RecipeTime
 
 {:ok, products} = Products.new() |> Products.add(%Product{name: "lentils"})
 ...
