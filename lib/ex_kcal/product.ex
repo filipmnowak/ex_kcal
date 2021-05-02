@@ -77,8 +77,8 @@ defmodule ExKcal.Product do
             v2
           {nil, :none} == v1 and {nil, :none} == v2 ->
             {nil, :none}
-          [{weight1, unit1}, {weight2, _unit2}] = [v1, v2] ->
-            {weight1 + weight2, unit1}
+          [{weight1, unit1}, {_weight2, _unit2}] = [v1, v2] ->
+            {weight1 + (ExKcal.Calc.convert_si_prefix(v2, unit1) |> elem(0)), unit1}
         end
       end
     )

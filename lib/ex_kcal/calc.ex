@@ -64,24 +64,25 @@ defmodule ExKcal.Calc do
   ## Notes
   Quirkiness of that function is already suggested by its name:
   - it converts from prefix to prefix, not really from unit to unit. This means that only prefix is taken into account
-    during the conversion. Because of that, as for now, something like that will go through:
-
-      iex> import ExKcal.Calc
-      iex> convert_si_prefix({0.1, :mg}, :dl)
-      0.001
+    during the conversion. Because of that, conversion between volume and weight units will go through (see examples).
 
   ## Examples
 
       iex> import ExKcal.Calc
+      iex> convert_si_prefix({0.1, :mg}, :dl)
+      {0.001, :dl}
       iex> convert_si_prefix({1002.0, :g}, :kg)
-      1.002
+      {1.002, :kg}
       iex> convert_si_prefix({0.23, :dag}, :mg)
-      2.3e3
-
+      {2.3e3, :mg}
 
   """
   @spec convert_si_prefix(weight() | volume(), atom()) :: weight() | volume()
-  def convert_si_prefix({value, unit_from}, unit_to = _to) do
+  def convert_si_prefix({value, unit_from}, unit_to) when unit_from === unit_to do
+    # noop
+    {value, unit_from}
+  end
+  def convert_si_prefix({value, unit_from}, unit_to) do
     prefix_from = SI.extract_prefix(unit_from)
     prefix_to = SI.extract_prefix(unit_to)
     factor = SI.prefix_conversion_factor(prefix_from, prefix_to)
@@ -89,7 +90,7 @@ defmodule ExKcal.Calc do
                        |> Float.parse()
                        |> elem(0)
     # TODO(fmn): there should be better way to do it.
-    Code.eval_string("#{normalized_value}e#{factor}")
-    |> elem(0)
+    {Code.eval_string("#{normalized_value}e#{factor}")
+    |> elem(0), unit_to}
   end
 end

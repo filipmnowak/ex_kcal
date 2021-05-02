@@ -49,7 +49,6 @@ defmodule ExKcal.Recipe do
   It returns kind of a special `ExKcal.Product` instance containing sum of all of the relevant fields, from all of the used
   Products.
   ## Notes
-  - Function doesn't take units into account.
   - It won't recalculate `total` fields, it will sum their values.
   """
   @spec total_nutrition(t()) :: Product.t()
