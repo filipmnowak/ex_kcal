@@ -1,6 +1,5 @@
 defmodule ExKcal.RecipeTest do
   use ExUnit.Case, async: true
-  doctest ExKcal.Recipe
 
   alias ExKcal.Recipe
   alias ExKcal.Recipe.Step, as: RecipeStep
