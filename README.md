@@ -20,13 +20,19 @@ end
 ## Examples
 
 ```elixir
-{:ok, products} = ExKcal.Products.new() |> ExKcal.Products.add(%ExKcal.Product{name: "lentils"})
+alias ExKcal.Product
+alias ExKcal.Products
+alias ExKcal.Recipe
+ExKcal.Recipe.Step, as: RecipeStep
+ExKcal.Recipe.Time, as: RecipeTime
+
+{:ok, products} = Products.new() |> Products.add(%Product{name: "lentils"})
 ...
-step1 = %ExKcal.Recipe.Step{time: %ExKcal.Recipe.Time{minutes: 5, seconds: 10}, instructions: "wash in cold water", products: products}
+step1 = %RecipeStep{time: %RecipeTime{minutes: 5, seconds: 10}, instructions: "wash in cold water", products: products}
 ...
-step2 = %ExKcal.Recipe.Step{time: %ExKcal.Recipe.Time{hours: 1}, instructions: "cook on medium heat"}
+step2 = %RecipeStep{time: %RecipeTime{hours: 1}, instructions: "cook on medium heat"}
 ...
-recipe = ExKcal.Recipe.add_step(ExKcal.Recipe.new(), step1) |> ExKcal.Recipe.add_step(ExKcal.Recipe.new(), step2)
+recipe = Recipe.add_step(Recipe.new(), step1) |> Recipe.add_step(Recipe.new(), step2)
 ```
 
 ## Docs
