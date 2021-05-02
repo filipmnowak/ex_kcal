@@ -3,7 +3,6 @@ defmodule ExKcal.CalcTest do
   doctest ExKcal.Calc
 
   alias ExKcal.Product
-  alias ExKcal.Carbs
   alias ExKcal.Fats
   alias ExKcal.Alcohols
   alias ExKcal.Vitamins
@@ -101,9 +100,4 @@ defmodule ExKcal.CalcTest do
     )
   end
 
-  test "Check ExKcal.Calc.multiplier()" do
-    assert 1.0 == Calc.multiplier(1, 1)
-    assert 2.0 == Calc.multiplier(100, 200)
-    assert 3.3333333333333335 == Calc.multiplier(45, 150)
-  end
 end

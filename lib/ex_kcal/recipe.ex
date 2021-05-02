@@ -52,7 +52,7 @@ defmodule ExKcal.Recipe do
   - Function doesn't take units into account.
   - It won't recalculate `total` fields, it will sum their values.
   """
-  @spec total_nutrition(t()) :: %Product{}
+  @spec total_nutrition(t()) :: Product.t()
   def total_nutrition(recipe) do
     Enum.reduce(
       recipe.steps
