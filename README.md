@@ -19,7 +19,7 @@ end
 
 ## Examples
 
-```
+```elixir
 {:ok, products} = ExKcal.Products.new() |> ExKcal.Products.add(%ExKcal.Product{name: "lentils"})
 ...
 step1 = %ExKcal.Recipe.Step{time: %ExKcal.Recipe.Time{minutes: 5, seconds: 10}, instructions: "wash in cold water", products: products}
