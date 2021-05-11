@@ -133,8 +133,8 @@ defmodule ExKcal.SI do
   end
 
   # base
-  defp _extract_prefix(<<_>>) do
-    :none
+  defp _extract_prefix(c) when c in ["g", "l"] do
+      :none
   end
 
   defp _extract_prefix(<<s1, _s2>>) do

@@ -13,7 +13,7 @@ defmodule ExKcal.ProductsTest do
 
   test "Check ExKcal.Products.add() if product added" do
     test_lentil = %Product{
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {25.0, :g},
       carbs: %Carbs{
         total: {75.7, :g},
@@ -40,7 +40,7 @@ defmodule ExKcal.ProductsTest do
 
   test "Check ExKcal.Products.add() if product not added because it's already there" do
     test_lentil = %Product{
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {25.0, :g},
       carbs: %Carbs{
         total: {75.7, :g},
@@ -67,7 +67,7 @@ defmodule ExKcal.ProductsTest do
   test "Check Product.get() if product returned" do
     test_potato = %Product{
       kcal: 76.9,
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {2.0, :g},
       carbs: %Carbs{
         total: {17.0, :g},
@@ -94,7 +94,7 @@ defmodule ExKcal.ProductsTest do
   test "Check Product.get() if missing product not returned" do
     test_potato = %Product{
       kcal: 76.9,
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {2.0, :g},
       carbs: %Carbs{
         total: {17.0, :g},
@@ -121,7 +121,7 @@ defmodule ExKcal.ProductsTest do
   test "Check ExKcal.Products.get() if missing product not returned" do
     test_potato = %Product{
       kcal: 76.9,
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {2.0, :g},
       carbs: %Carbs{
         total: {17.0, :g},
@@ -147,7 +147,7 @@ defmodule ExKcal.ProductsTest do
 
   test "Check ExKcal.Products.find() if returns single match by name only" do
     test_lentil = %Product{
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {25.0, :g},
       carbs: %Carbs{
         total: {75.7, :g},
@@ -168,7 +168,7 @@ defmodule ExKcal.ProductsTest do
 
     test_potato = %Product{
       kcal: 76.9,
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {2.0, :g},
       carbs: %Carbs{
         total: {17.0, :g},
@@ -195,7 +195,7 @@ defmodule ExKcal.ProductsTest do
 
   test "Check ExKcal.Products.find() if returns right two matches by two fields" do
     test_lentil = %Product{
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {25.0, :g},
       carbs: %Carbs{
         total: {75.7, :g},
@@ -216,7 +216,7 @@ defmodule ExKcal.ProductsTest do
 
     test_potato = %Product{
       kcal: 76.9,
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {2.0, :g},
       carbs: %Carbs{
         total: {17.0, :g},
@@ -252,7 +252,7 @@ defmodule ExKcal.ProductsTest do
 
   test "Check ExKcal.Products.find() if returns right result for lack of matches" do
     test_lentil = %Product{
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {25.0, :g},
       carbs: %Carbs{
         total: {75.7, :g},
@@ -273,7 +273,7 @@ defmodule ExKcal.ProductsTest do
 
     test_potato = %Product{
       kcal: 76.9,
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {2.0, :g},
       carbs: %Carbs{
         total: {17.0, :g},

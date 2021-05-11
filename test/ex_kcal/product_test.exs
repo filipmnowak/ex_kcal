@@ -8,7 +8,7 @@ defmodule ExKcal.ProductTest do
 
   test "Check if ExKcal.Product.sum returns right result" do
     test_lentil = %Product{
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {25.0, :g},
       carbs: %Carbs{
         total: {75.7, :g},
@@ -29,7 +29,7 @@ defmodule ExKcal.ProductTest do
 
     test_potato = %Product{
       kcal: 76.9,
-      weight: {100.0, :g},
+      amount: {100.0, :g},
       proteins: {2.0, :g},
       carbs: %Carbs{
         total: {17.0, :g},
@@ -64,7 +64,7 @@ defmodule ExKcal.ProductTest do
       },
       kcal: 76.9,
       proteins: {27.0, :g},
-      weight: {200.0, :g}
+      amount: {200.0, :g}
     }
 
     assert test_lentilopotat == Product.sum(test_lentil, test_potato)
