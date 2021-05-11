@@ -24,6 +24,21 @@ defmodule ExKcal.Products do
   end
 
   @doc """
+  `Products` from list of `Product`s.
+  """
+  @spec from_list(list(Product.t())) :: t()
+  def from_list(list) when is_list(list) do
+    Enum.reduce(
+      list,
+      new(),
+      fn product, products ->
+        {:ok, products} = add(products, product)
+        products
+      end
+    )
+  end
+
+  @doc """
   Add `Product` to `Products`.
   """
   @spec add(t(), Product.t()) :: {:ok, t()} | {:noop, :already_member}

@@ -8,7 +8,25 @@ defmodule ExKcal.ProductsTest do
   alias ExKcal.Fats
 
   test "Check ExKcal.Products.new()" do
-    assert %Products{map: %{}} == Products.new()
+    assert %Products{map: %{}} === Products.new()
+  end
+
+  test "Check ExKcal.Products.from_list() from empty list" do
+    assert %Products{map: %{}} === Products.from_list([])
+  end
+
+  test "Check ExKcal.Products.from_list()" do
+    product_list = [
+      %Product{name: "something"},
+      %Product{description: "something else"}
+    ]
+    products = %Products{
+      map: %{
+        %Product{name: "something"} => nil,
+        %Product{description: "something else"} => nil,
+      }
+    }
+    assert products === Products.from_list(product_list)
   end
 
   test "Check ExKcal.Products.add() if product added" do
