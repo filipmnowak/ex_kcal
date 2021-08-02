@@ -189,12 +189,105 @@ defmodule ExKcal.Data do
         saturated: {0.6, :g}
       },
       salt: {0.07, :g},
-      name: "Naturaplan Bio Fairtrade Mango",
-      note: "Vegan, bio.",
-      brand: "Coop naturplan",
+      name: "Fairtrade Mango",
+      note: "Vegan, organic.",
+      brand: "Coop Naturplan",
       producer: "Sunray",
       produced: [:switzerland, :burkinafaso],
       origin: [:burkinafaso]
+    },
+    %Product{
+      kcal: 396.0,
+      amount: {100.0, :g},
+      proteins: {27.0, :g},
+      fats: %Fats{
+        total: {32.0, :g},
+        saturated: {19.0, :g}
+      },
+      salt: {1.5, :g},
+      name: "Mild Gruyère",
+      note: "Organic",
+      brand: "Coop Naturplan",
+      producer: "Emmi Schweiz AG",
+      produced: [:switzerland],
+      origin: [:switzerlGand]
+    },
+    %Product{
+      kcal: 230.0,
+      amount: {100.0, :g},
+      proteins: {8.3, :g},
+      carbs: %Carbs{
+        total: {43.0, :g},
+        sugars: {3.7, :g},
+        dietary_fiber: {2.4, :g}
+      },
+      fats: %Fats{
+        total: {2.2, :g},
+        saturated: {0.6, :g}
+      },
+      salt: {1.4, :g},
+      name: "Toast",
+      note: "21 Scheiben; E471, E481, E282, E300; https://www.coop.ch/de/lebensmittel/brot-backwaren/haltbare-brote/toastbrote-buns/prix-garantie-toast-21-scheiben/p/3735237",
+      brand: "Prix Garantie",
+      produced: [:austria],
+    },
+    %Product{
+      kcal: 25.0,
+      amount: {100.0, :g},
+      proteins: {1.5, :g},
+      carbs: %Carbs{
+        total: {5.5, :g},
+        sugars: {4.0, :g},
+        dietary_fiber: {1.5, :g}
+      },
+      salt: {0.1, :g},
+      name: "Strained Tomatoes",
+      description: "Passata Di Pomodoro",
+      note: "Organic",
+      brand: "Coop Naturplan",
+      producer: "Buonvicini AG",
+      produced: [:italy],
+      origin: [:italy]
+    },
+    %Product{
+      kcal: 332.0,
+      amount: {100.0, :mg},
+      proteins: {24.5, :g},
+      carbs: %Carbs{
+        total: {61.4, :g},
+        sugars: {1.67, :g},
+        dietary_fiber: {16.1, :g}
+      },
+      fats: %Fats{
+        total: {1.54, :g},
+        saturated: {0.265, :g}
+      },
+      salt: {0.02, :g},
+      name: "Saint-Flour Blond Lentils",
+      note: "no nutrition facts at https://www.coop.ch/en/food/inventories/staples/grains-corn-semolina/lentils-beans-grains/slow-food-st-flour-blond-lentils/p/3614306; taken from https://world.openfoodfacts.org/category/en:blonde-lentils.",
+      brand: "Slow Food",
+      produced: [:france],
+      origin: [:france]
+    },
+    %Product{
+      kcal: 172.0,
+      amount: {100.0, :ml},
+      proteins: {1.3, :g},
+      carbs: %Carbs{
+        total: {2.4, :g},
+        sugars: {1.7, :g},
+      },
+      fats: %Fats{
+        total: {17.4, :g},
+        saturated: {14.1, :g}
+      },
+      salt: {0.06, :g},
+      name: "Coconut Milk",
+      note: "UHT",
+      brand: "Thai Kitchen",
+      producer: "McCormick France SAS",
+      produced: [:thailand],
+      origin: [:thailand]
     },
   ]
 
