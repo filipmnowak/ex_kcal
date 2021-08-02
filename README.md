@@ -27,12 +27,11 @@ alias ExKcal.Recipe.Step, as: RecipeStep
 alias ExKcal.Recipe.Time, as: RecipeTime
 
 {:ok, products} = Products.new() |> Products.add(%Product{name: "lentils"})
-...
 step1 = %RecipeStep{time: %RecipeTime{minutes: 5, seconds: 10}, instructions: "wash in cold water", products: products}
-...
 step2 = %RecipeStep{time: %RecipeTime{hours: 1}, instructions: "cook on medium heat"}
-...
-recipe = Recipe.add_step(Recipe.new(), step1) |> Recipe.add_step(Recipe.new(), step2)
+recipe = Recipe.add_step(Recipe.new(), step1) |> Recipe.add_step(step2)
+total_nutrition = Recipe.total_nutrition(recipe)
+total_time = Recipe.total_time(recipe)
 ```
 
 ## Docs
