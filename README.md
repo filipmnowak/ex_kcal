@@ -20,25 +20,25 @@ end
 ## Examples
 
 ```elixir
-iex>> alias ExKcal.Fats
+iex> alias ExKcal.Fats
 ExKcal.Fats
-iex>> alias ExKcal.Product
+iex> alias ExKcal.Product
 ExKcal.Product
-iex>> alias ExKcal.Products
+iex> alias ExKcal.Products
 ExKcal.Products
-iex>> import ExKcal.Calc
+iex> import ExKcal.Calc
 ExKcal.Calc
-iex>> alias ExKcal.Recipe
+iex> alias ExKcal.Recipe
 ExKcal.Recipe
-iex>> import Recipe
+iex> import Recipe
 ExKcal.Recipe
-iex>> alias ExKcal.Recipe.Step, as: RecipeStep
+iex> alias ExKcal.Recipe.Step, as: RecipeStep
 ExKcal.Recipe.Step
-iex>> alias ExKcal.Recipe.Time, as: RecipeTime
+iex> alias ExKcal.Recipe.Time, as: RecipeTime
 ExKcal.Recipe.Time
-iex>> 
+iex> 
 nil
-iex>> strange_apple = %Product{name: "strange apple",
+iex> strange_apple = %Product{name: "strange apple",
 ...(10)>                         kcal: 301.0,
 ...(10)>                         amount: {100.0, :g},
 ...(10)>                         fats: %Fats{total: {4.0, :kg}}} |> adjust_amount({1.0, :kg})
@@ -178,7 +178,7 @@ iex>
      } => nil
    }
  }}
-iex>> step1 = %RecipeStep{time: %RecipeTime{minutes: 5, seconds: 10},
+iex> step1 = %RecipeStep{time: %RecipeTime{minutes: 5, seconds: 10},
 ...(12)>                     instructions: "wash in cold water", products: products}
 %ExKcal.Recipe.Step{
   instructions: "wash in cold water",
@@ -254,7 +254,7 @@ iex>> step1 = %RecipeStep{time: %RecipeTime{minutes: 5, seconds: 10},
   },
   time: %ExKcal.Recipe.Time{hours: 0, minutes: 5, seconds: 10}
 }
-iex>> step2 = %RecipeStep{time: %RecipeTime{hours: 1}, instructions: "cook on medium heat"}
+iex> step2 = %RecipeStep{time: %RecipeTime{hours: 1}, instructions: "cook on medium heat"}
 %ExKcal.Recipe.Step{
   instructions: "cook on medium heat",
   notes: "",
