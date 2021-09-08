@@ -96,11 +96,8 @@ defmodule ExKcal.Calc do
     prefix_from = SI.extract_prefix(unit_from)
     prefix_to = SI.extract_prefix(unit_to)
     factor = SI.prefix_conversion_factor(prefix_from, prefix_to)
-    normalized_value = to_string(value)
-                       |> Float.parse()
-                       |> elem(0)
     # TODO(fmn): there should be better way to do it.
-    {Code.eval_string("#{normalized_value}e#{factor}")
+    {Code.eval_string("#{value + 0.0}e#{factor}")
     |> elem(0), unit_to}
   end
 end
