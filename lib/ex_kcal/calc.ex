@@ -15,7 +15,10 @@ defmodule ExKcal.Calc do
   @spec adjust_amount(struct(), weight() | volume(), weight() | volume() | nil) :: struct()
   def adjust_amount(value, {new_count, new_unit}, current_amount \\ nil) when is_struct(value) do
     {current_count, current_unit} = Map.get_lazy(value, :amount, fn -> current_amount end)
-    {normalized_new_count, normalized_new_unit} = Calc.convert_si_unit({new_count, new_unit}, current_unit)
+
+    {normalized_new_count, normalized_new_unit} =
+      Calc.convert_si_unit({new_count, new_unit}, current_unit)
+
     Enum.reduce(
       Enum.map(
         Map.keys(value)
@@ -24,6 +27,7 @@ defmodule ExKcal.Calc do
           case k do
             :amount ->
               {k, {new_count, new_unit}}
+
             _ ->
               {
                 k,
@@ -41,7 +45,8 @@ defmodule ExKcal.Calc do
     )
   end
 
-  defp multiplier(divident, divisor) when is_non_neg_number(divident) and is_non_neg_number(divisor) do
+  defp multiplier(divident, divisor)
+       when is_non_neg_number(divident) and is_non_neg_number(divisor) do
     1 / (divident / divisor)
   end
 
@@ -92,12 +97,11 @@ defmodule ExKcal.Calc do
     # noop
     {value, unit_from}
   end
+
   def convert_si_unit({value, unit_from}, unit_to) do
     prefix_from = SI.extract_prefix(unit_from)
     prefix_to = SI.extract_prefix(unit_to)
     factor = SI.prefix_conversion_factor(prefix_from, prefix_to)
-    # TODO(fmn): there should be better way to do it.
-    {Code.eval_string("#{value + 0.0}e#{factor}")
-    |> elem(0), unit_to}
+    {(value + 0.0) * 10 ** factor, unit_to}
   end
 end
