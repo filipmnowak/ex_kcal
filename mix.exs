@@ -7,8 +7,8 @@ defmodule ExKcal.MixProject do
       package: package(),
       description: description(),
       app: :ex_kcal,
-      version: "0.0.6",
-      elixir: "~> 1.11",
+      version: "0.0.7",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -24,8 +24,9 @@ defmodule ExKcal.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:jason, "~> 1.4"},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
-      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
 

@@ -3,6 +3,9 @@ defmodule ExKcal.Minerals do
   Minerals and microelements split into subcategories.
   """
 
+  alias ExKcal.Minerals
+  alias ExKcal.Helpers, as: H
+
   use ExKcal.Units
 
   @typedoc """
@@ -28,6 +31,7 @@ defmodule ExKcal.Minerals do
           zinc: weight()
         }
 
+  @derive Jason.Encoder
   defstruct(
     calcium: {nil, :none},
     chloride: {nil, :none},
@@ -47,4 +51,34 @@ defmodule ExKcal.Minerals do
     sulfur: {nil, :none},
     zinc: {nil, :none}
   )
+
+  def decode(map) when is_map(map) do
+    struct!(
+      Minerals,
+      %{
+        calcium: H.decode(map.calcium),
+        chloride: H.decode(map.chloride),
+        chromium: H.decode(map.chromium),
+        copper: H.decode(map.copper),
+        fluoride: H.decode(map.fluoride),
+        iodine: H.decode(map.iodine),
+        iodide: H.decode(map.iodide),
+        iron: H.decode(map.iron),
+        magnesium: H.decode(map.magnesium),
+        manganese: H.decode(map.manganese),
+        molybdenum: H.decode(map.molybdenum),
+        phosphorus: H.decode(map.phosphorus),
+        potassium: H.decode(map.potassium),
+        selenium: H.decode(map.selenium),
+        sodium: H.decode(map.sodium),
+        sulfur: H.decode(map.sulfur),
+        zinc: H.decode(map.zinc)
+      }
+    )
+  end
+
+  def decode(string) do
+    Jason.decode!(string, keys: :atoms!)
+    |> decode()
+  end
 end

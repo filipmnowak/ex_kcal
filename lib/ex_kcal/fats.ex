@@ -3,8 +3,12 @@ defmodule ExKcal.Fats do
   Fats split into subcategories.
   """
 
+  alias ExKcal.Fats
+  alias ExKcal.Helpers, as: H
+
   use ExKcal.Units
 
+  @derive Jason.Encoder
   defstruct(
     total: {nil, :none},
     saturated: {nil, :none},
@@ -21,4 +25,20 @@ defmodule ExKcal.Fats do
           monounsaturated: weight(),
           polyunsaturated: weight()
         }
+  def decode(map) when is_map(map) do
+    struct!(
+      Fats,
+      %{
+        total: H.decode(map.total),
+        saturated: H.decode(map.saturated),
+        monounsaturated: H.decode(map.monounsaturated),
+        polyunsaturated: H.decode(map.polyunsaturated),
+      }
+    )
+  end
+
+  def decode(string) do
+    Jason.decode!(string, keys: :atoms!)
+    |> decode()
+  end
 end

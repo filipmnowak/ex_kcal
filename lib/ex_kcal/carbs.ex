@@ -3,8 +3,12 @@ defmodule ExKcal.Carbs do
   Carbohydrates split into subcategories.
   """
 
+  alias ExKcal.Carbs
+  alias ExKcal.Helpers, as: H
+
   use ExKcal.Units
 
+  @derive Jason.Encoder
   defstruct(
     total: {nil, :none},
     starch: {nil, :none},
@@ -23,4 +27,22 @@ defmodule ExKcal.Carbs do
           sugars: weight(),
           dietary_fiber: weight()
         }
+
+  def decode(map) when is_map(map) do
+    struct!(
+      Carbs,
+      %{
+        total: H.decode(map.total),
+        starch: H.decode(map.starch),
+        other: H.decode(map.other),
+        sugars: H.decode(map.sugars),
+        dietary_fiber: H.decode(map.dietary_fiber)
+      }
+    )
+  end
+
+  def decode(string) when is_bitstring(string) do
+    Jason.decode!(string, keys: :atoms!)
+    |> decode()
+  end
 end
