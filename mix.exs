@@ -7,7 +7,7 @@ defmodule ExKcal.MixProject do
       package: package(),
       description: description(),
       app: :ex_kcal,
-      version: "0.0.7",
+      version: "0.0.8",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       deps: deps()
