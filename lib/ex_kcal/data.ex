@@ -264,7 +264,7 @@ defmodule ExKcal.Data do
       },
       salt: {0.02, :g},
       name: "Saint-Flour Blond Lentils",
-      note: "no nutrition facts at https://www.coop.ch/en/food/inventories/staples/grains-corn-semolina/lentils-beans-grains/slow-food-st-flour-blond-lentils/p/3614306; taken from https://world.openfoodfacts.org/category/en:blonde-lentils.",
+      note: "no nutrition facts at https://www.coop.ch/en/food/inventories/staples/grains-corn-semolina/lentils-beans-grains/slow-food-st-flour-blond-lentils/p/3614306, taken from https://world.openfoodfacts.org/category/en:blonde-lentils.",
       brand: "Slow Food",
       produced: [:france],
       origin: [:france]
