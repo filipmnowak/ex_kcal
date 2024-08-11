@@ -6,13 +6,70 @@ defmodule ExKcal.Data do
 
   @products [
     %Product{
+      kcal: 729.0,
+      amount: {100.0, :g},
+      proteins: {11.0, :g},
+      carbs: %Carbs{
+        total: {4.4, :g}
+      },
+      dietary_fiber: {9.5, :g},
+      fats: %Fats{
+        total: {72.0, :g},
+        saturated: {5.5, :g}
+      },
+      name: "Bio Pekannüsse",
+      note: "Organic",
+      brand: "Coop Naturplan",
+      producer: "HALBA",
+      produced: [:switzerland],
+      origin: [:mexico]
+    },
+    %Product{
+      kcal: 363.0,
+      amount: {100.0, :g},
+      proteins: {21.0, :g},
+      carbs: %Carbs{
+        total: {17.0, :g}
+      },
+      dietary_fiber: {38.0, :g},
+      fats: %Fats{
+        total: {15.0, :g},
+        saturated: {15.0, :g}
+      },
+      name: "Bio Kokosmehl",
+      note: "Fairtrade, organic",
+      brand: "Coop Naturplan",
+      producer: "Morga AG",
+      produced: [:switzerland],
+      origin: [:srilanka]
+    },
+    %Product{
+      kcal: 652.0,
+      amount: {100.0, :g},
+      proteins: {7.7, :g},
+      carbs: %Carbs{
+        total: {21.0, :g}
+      },
+      dietary_fiber: {12.0, :g},
+      fats: %Fats{
+        total: {57.0, :g},
+        saturated: {35.0, :g}
+      },
+      name: "Chocolat Noir 87% De Cacao Trinitario",
+      note: "Fairtrade, organic",
+      brand: "Coop Naturplan",
+      producer: "Chocolats Halba",
+      produced: [:switzerland],
+      origin: [:honduras]
+    },
+    %Product{
       kcal: 385.0,
       amount: {100.0, :g},
       proteins: {15.0, :g},
       carbs: %Carbs{
-        total: {50.0, :g},
-        dietary_fiber: {13.0, :g}
+        total: {50.0, :g}
       },
+      dietary_fiber: {13.0, :g},
       fats: %Fats{
         total: {11.0, :g},
         saturated: {1.8, :g}
@@ -58,9 +115,9 @@ defmodule ExKcal.Data do
       proteins: {22.0, :g},
       carbs: %Carbs{
         total: {5.9, :g},
-        sugars: {2.6, :g},
-        dietary_fiber: {18.0, :g}
+        sugars: {2.6, :g}
       },
+      dietary_fiber: {18.0, :g},
       fats: %Fats{
         total: {46.0, :g},
         saturated: {4.6, :g}
@@ -115,7 +172,7 @@ defmodule ExKcal.Data do
       description: "Grilled, Natural",
       brand: "Rio Mare",
       producer: "Bolton Alimentari S.p.A",
-      produced: [:italy],
+      produced: [:italy]
     },
     %Product{
       kcal: 189.0,
@@ -123,9 +180,9 @@ defmodule ExKcal.Data do
       proteins: {1.2, :g},
       carbs: %Carbs{
         total: {2.2, :g},
-        sugars: {0.4, :g},
-        dietary_fiber: {2.0, :g}
+        sugars: {0.4, :g}
       },
+      dietary_fiber: {2.0, :g},
       fats: %Fats{
         total: {19.0, :g},
         saturated: {2.7, :g}
@@ -135,17 +192,17 @@ defmodule ExKcal.Data do
       description: "Pitted Green Olives In Brine",
       brand: "creSpo",
       producer: "Somia S.A.",
-      produced: [:morocco],
+      produced: [:morocco]
     },
     %Product{
       kcal: 45.0,
       amount: {100, :ml},
       carbs: %Carbs{
         total: {9.0, :g},
-        sugars: {1, :g},
+        sugars: {1, :g}
       },
       fats: %Fats{
-        total: {1.0, :g},
+        total: {1.0, :g}
       },
       name: "Karma Bio Reis-Drink Nature",
       note: "Vegan, no sugar added, UHT, bio.",
@@ -159,9 +216,9 @@ defmodule ExKcal.Data do
       amount: {100, :g},
       carbs: %Carbs{
         total: {6.5, :g},
-        sugars: {6.0, :g},
-        dietary_fiber: {14.0, :g}
+        sugars: {6.0, :g}
       },
+      dietary_fiber: {14.0, :g},
       fats: %Fats{
         total: {64, :g},
         saturated: {55.0, :g}
@@ -181,9 +238,9 @@ defmodule ExKcal.Data do
       proteins: {3.3, :g},
       carbs: %Carbs{
         total: {69.0, :g},
-        sugars: {67.0, :g},
-        dietary_fiber: {9.4, :g}
+        sugars: {67.0, :g}
       },
+      dietary_fiber: {9.4, :g},
       fats: %Fats{
         total: {2.5, :g},
         saturated: {0.6, :g}
@@ -218,18 +275,19 @@ defmodule ExKcal.Data do
       proteins: {8.3, :g},
       carbs: %Carbs{
         total: {43.0, :g},
-        sugars: {3.7, :g},
-        dietary_fiber: {2.4, :g}
+        sugars: {3.7, :g}
       },
+      dietary_fiber: {2.4, :g},
       fats: %Fats{
         total: {2.2, :g},
         saturated: {0.6, :g}
       },
       salt: {1.4, :g},
       name: "Toast",
-      note: "21 Scheiben; E471, E481, E282, E300; https://www.coop.ch/de/lebensmittel/brot-backwaren/haltbare-brote/toastbrote-buns/prix-garantie-toast-21-scheiben/p/3735237",
+      note:
+        "21 Scheiben; E471, E481, E282, E300; https://www.coop.ch/de/lebensmittel/brot-backwaren/haltbare-brote/toastbrote-buns/prix-garantie-toast-21-scheiben/p/3735237",
       brand: "Prix Garantie",
-      produced: [:austria],
+      produced: [:austria]
     },
     %Product{
       kcal: 25.0,
@@ -237,9 +295,9 @@ defmodule ExKcal.Data do
       proteins: {1.5, :g},
       carbs: %Carbs{
         total: {5.5, :g},
-        sugars: {4.0, :g},
-        dietary_fiber: {1.5, :g}
+        sugars: {4.0, :g}
       },
+      dietary_fiber: {1.5, :g},
       salt: {0.1, :g},
       name: "Strained Tomatoes",
       description: "Passata Di Pomodoro",
@@ -255,16 +313,17 @@ defmodule ExKcal.Data do
       proteins: {24.5, :g},
       carbs: %Carbs{
         total: {61.4, :g},
-        sugars: {1.67, :g},
-        dietary_fiber: {16.1, :g}
+        sugars: {1.67, :g}
       },
+      dietary_fiber: {16.1, :g},
       fats: %Fats{
         total: {1.54, :g},
         saturated: {0.265, :g}
       },
       salt: {0.02, :g},
       name: "Saint-Flour Blond Lentils",
-      note: "no nutrition facts at https://www.coop.ch/en/food/inventories/staples/grains-corn-semolina/lentils-beans-grains/slow-food-st-flour-blond-lentils/p/3614306, taken from https://world.openfoodfacts.org/category/en:blonde-lentils.",
+      note:
+        "no nutrition facts at https://www.coop.ch/en/food/inventories/staples/grains-corn-semolina/lentils-beans-grains/slow-food-st-flour-blond-lentils/p/3614306, taken from https://world.openfoodfacts.org/category/en:blonde-lentils.",
       brand: "Slow Food",
       produced: [:france],
       origin: [:france]
@@ -275,7 +334,7 @@ defmodule ExKcal.Data do
       proteins: {1.3, :g},
       carbs: %Carbs{
         total: {2.4, :g},
-        sugars: {1.7, :g},
+        sugars: {1.7, :g}
       },
       fats: %Fats{
         total: {17.4, :g},
@@ -288,7 +347,7 @@ defmodule ExKcal.Data do
       producer: "McCormick France SAS",
       produced: [:thailand],
       origin: [:thailand]
-    },
+    }
   ]
 
   def products() do
