@@ -20,12 +20,14 @@ defmodule ExKcal.ProductsTest do
       %Product{name: "something"},
       %Product{description: "something else"}
     ]
+
     products = %Products{
       map: %{
         %Product{name: "something"} => nil,
-        %Product{description: "something else"} => nil,
+        %Product{description: "something else"} => nil
       }
     }
+
     assert products === Products.from_list(product_list)
   end
 
@@ -36,9 +38,9 @@ defmodule ExKcal.ProductsTest do
       carbs: %Carbs{
         total: {75.7, :g},
         other: {63.0, :g},
-        sugars: {2.0, :g},
-        dietary_fiber: {10.7, :g}
+        sugars: {2.0, :g}
       },
+      dietary_fiber: {10.7, :g},
       fats: %Fats{
         total: {1.0, :g},
         saturated: {0.0, :g},
@@ -63,9 +65,9 @@ defmodule ExKcal.ProductsTest do
       carbs: %Carbs{
         total: {75.7, :g},
         other: {63.0, :g},
-        sugars: {2.0, :g},
-        dietary_fiber: {10.7, :g}
+        sugars: {2.0, :g}
       },
+      dietary_fiber: {10.7, :g},
       fats: %Fats{
         total: {1.0, :g},
         saturated: {0.0, :g},
@@ -90,9 +92,9 @@ defmodule ExKcal.ProductsTest do
       carbs: %Carbs{
         total: {17.0, :g},
         other: {0.0, :g},
-        sugars: {0.78, :g},
-        dietary_fiber: {2.2, :g}
+        sugars: {0.78, :g}
       },
+      dietary_fiber: {2.2, :g},
       fats: %Fats{
         total: {0.09, :g},
         saturated: {0.03, :g},
@@ -117,9 +119,9 @@ defmodule ExKcal.ProductsTest do
       carbs: %Carbs{
         total: {17.0, :g},
         other: {0.0, :g},
-        sugars: {0.78, :g},
-        dietary_fiber: {2.2, :g}
+        sugars: {0.78, :g}
       },
+      dietary_fiber: {2.2, :g},
       fats: %Fats{
         total: {0.09, :g},
         saturated: {0.03, :g},
@@ -144,9 +146,9 @@ defmodule ExKcal.ProductsTest do
       carbs: %Carbs{
         total: {17.0, :g},
         other: {0.0, :g},
-        sugars: {0.78, :g},
-        dietary_fiber: {2.2, :g}
+        sugars: {0.78, :g}
       },
+      dietary_fiber: {2.2, :g},
       fats: %Fats{
         total: {0.09, :g},
         saturated: {0.03, :g},
@@ -170,9 +172,9 @@ defmodule ExKcal.ProductsTest do
       carbs: %Carbs{
         total: {75.7, :g},
         other: {63.0, :g},
-        sugars: {2.0, :g},
-        dietary_fiber: {10.7, :g}
+        sugars: {2.0, :g}
       },
+      dietary_fiber: {10.7, :g},
       fats: %Fats{
         total: {1.0, :g},
         saturated: {0.0, :g},
@@ -192,8 +194,8 @@ defmodule ExKcal.ProductsTest do
         total: {17.0, :g},
         other: {0.0, :g},
         sugars: {0.78, :g},
-        dietary_fiber: {2.2, :g}
       },
+        dietary_fiber: {2.2, :g},
       fats: %Fats{
         total: {0.09, :g},
         saturated: {0.03, :g},
@@ -219,8 +221,8 @@ defmodule ExKcal.ProductsTest do
         total: {75.7, :g},
         other: {63.0, :g},
         sugars: {2.0, :g},
-        dietary_fiber: {10.7, :g}
       },
+        dietary_fiber: {10.7, :g},
       fats: %Fats{
         total: {1.0, :g},
         saturated: {0.0, :g},
@@ -240,8 +242,8 @@ defmodule ExKcal.ProductsTest do
         total: {17.0, :g},
         other: {0.0, :g},
         sugars: {0.78, :g},
-        dietary_fiber: {2.2, :g}
       },
+        dietary_fiber: {2.2, :g},
       fats: %Fats{
         total: {0.09, :g},
         saturated: {0.03, :g},
@@ -276,8 +278,8 @@ defmodule ExKcal.ProductsTest do
         total: {75.7, :g},
         other: {63.0, :g},
         sugars: {2.0, :g},
-        dietary_fiber: {10.7, :g}
       },
+        dietary_fiber: {10.7, :g},
       fats: %Fats{
         total: {1.0, :g},
         saturated: {0.0, :g},
@@ -297,8 +299,8 @@ defmodule ExKcal.ProductsTest do
         total: {17.0, :g},
         other: {0.0, :g},
         sugars: {0.78, :g},
-        dietary_fiber: {2.2, :g}
       },
+        dietary_fiber: {2.2, :g},
       fats: %Fats{
         total: {0.09, :g},
         saturated: {0.03, :g},
